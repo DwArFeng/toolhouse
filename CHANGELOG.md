@@ -4,6 +4,8 @@
 
 #### 功能构建
 
+- 完成 node 模块，打包测试及启动测试通过。
+
 - 建立实体以及维护服务，并通过单元测试。
   - com.dwarfeng.toolhouse.stack.bean.entity.Cabinet。
   - com.dwarfeng.toolhouse.stack.bean.entity.Favorite。
