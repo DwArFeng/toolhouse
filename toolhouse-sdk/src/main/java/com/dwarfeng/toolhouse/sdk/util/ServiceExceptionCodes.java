@@ -1,5 +1,7 @@
 package com.dwarfeng.toolhouse.sdk.util;
 
+import com.dwarfeng.subgrade.stack.exception.ServiceException;
+
 /**
  * 服务异常代码。
  *
@@ -10,8 +12,25 @@ public final class ServiceExceptionCodes {
 
     private static int EXCEPTION_CODE_OFFSET = 14000;
 
-    // 该方法在后续的开发过程中需要使用，故忽略相关警告。
-    @SuppressWarnings("unused")
+    public static final ServiceException.Code USER_NOT_EXISTS =
+            new ServiceException.Code(offset(0), "user not exists");
+    public static final ServiceException.Code USER_NOT_PERMITTED_FOR_CABINET =
+            new ServiceException.Code(offset(10), "user not permitted for cabinet");
+    public static final ServiceException.Code CABINET_NOT_EXISTS =
+            new ServiceException.Code(offset(20), "cabinet not exists");
+    public static final ServiceException.Code INVALID_PERMISSION_LEVEL =
+            new ServiceException.Code(offset(30), "invalid permission level");
+    public static final ServiceException.Code FOLDER_NOT_EXISTS =
+            new ServiceException.Code(offset(40), "note node not exists");
+    public static final ServiceException.Code ILLEGAL_FOLDER_STATE =
+            new ServiceException.Code(offset(50), "illegal note node state");
+    public static final ServiceException.Code CABINET_NOT_IDENTICAL =
+            new ServiceException.Code(offset(60), "cabinet not identical");
+    public static final ServiceException.Code TOOL_NOT_EXISTS =
+            new ServiceException.Code(offset(70), "note item not exists");
+    public static final ServiceException.Code ILLEGAL_TOOL_STATE =
+            new ServiceException.Code(offset(80), "illegal note item state");
+
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
     }
@@ -33,6 +52,17 @@ public final class ServiceExceptionCodes {
     public static void setExceptionCodeOffset(int exceptionCodeOffset) {
         // 设置 EXCEPTION_CODE_OFFSET 的值。
         EXCEPTION_CODE_OFFSET = exceptionCodeOffset;
+
+        // 以新的 EXCEPTION_CODE_OFFSET 为基准，更新异常代码的值。
+        USER_NOT_EXISTS.setCode(offset(0));
+        USER_NOT_PERMITTED_FOR_CABINET.setCode(offset(10));
+        CABINET_NOT_EXISTS.setCode(offset(20));
+        INVALID_PERMISSION_LEVEL.setCode(offset(30));
+        FOLDER_NOT_EXISTS.setCode(offset(40));
+        ILLEGAL_FOLDER_STATE.setCode(offset(50));
+        CABINET_NOT_IDENTICAL.setCode(offset(60));
+        TOOL_NOT_EXISTS.setCode(offset(70));
+        ILLEGAL_TOOL_STATE.setCode(offset(80));
     }
 
     private ServiceExceptionCodes() {

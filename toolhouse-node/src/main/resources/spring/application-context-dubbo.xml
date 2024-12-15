@@ -39,13 +39,28 @@
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.CabinetOperateService"
+            ref="cabinetOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.FolderMaintainService"
             ref="folderMaintainServiceImpl"
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.FolderOperateService"
+            ref="folderOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.ToolMaintainService"
             ref="toolMaintainServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.ToolOperateService"
+            ref="toolOperateServiceImpl"
             group="${dubbo.provider.group}"
     />
     <dubbo:service

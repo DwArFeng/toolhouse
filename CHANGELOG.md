@@ -4,6 +4,11 @@
 
 #### 功能构建
 
+- 增加操作服务。
+  - com.dwarfeng.toolhouse.stack.service.CabinetOperateService。
+  - com.dwarfeng.toolhouse.stack.service.FolderOperateService。
+  - com.dwarfeng.toolhouse.stack.service.ToolOperateService。
+
 - 完成 node 模块，打包测试及启动测试通过。
 
 - 建立实体以及维护服务，并通过单元测试。
