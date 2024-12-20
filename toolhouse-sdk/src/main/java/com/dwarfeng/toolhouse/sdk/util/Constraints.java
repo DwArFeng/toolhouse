@@ -9,6 +9,11 @@ package com.dwarfeng.toolhouse.sdk.util;
 public final class Constraints {
 
     /**
+     * 字符串 ID 的长度约束。
+     */
+    public static final int LENGTH_STRING_ID = 100;
+
+    /**
      * 名称的长度约束。
      */
     public static final int LENGTH_NAME = 50;
@@ -22,6 +27,11 @@ public final class Constraints {
      * 用户主键的长度约束。
      */
     public static final int LENGTH_USER = 50;
+
+    /**
+     * 可视化器、执行器类型的长度约束。
+     */
+    public static final int LENGTH_TYPE = 50;
 
     private Constraints() {
         throw new IllegalStateException("禁止实例化");

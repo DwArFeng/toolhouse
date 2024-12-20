@@ -11,12 +11,16 @@ import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.impl.bean.HibernateMapper;
 import com.dwarfeng.toolhouse.impl.bean.entity.*;
+import com.dwarfeng.toolhouse.impl.bean.key.HibernateExecutorKey;
 import com.dwarfeng.toolhouse.impl.bean.key.HibernateFavoriteKey;
 import com.dwarfeng.toolhouse.impl.bean.key.HibernatePocaKey;
+import com.dwarfeng.toolhouse.impl.bean.key.HibernateVisualizerKey;
 import com.dwarfeng.toolhouse.impl.dao.preset.*;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +36,10 @@ public class DaoConfiguration {
     private final FolderPresetCriteriaMaker folderPresetCriteriaMaker;
     private final ToolPresetCriteriaMaker toolPresetCriteriaMaker;
     private final FavoritePresetCriteriaMaker favoritePresetCriteriaMaker;
+    private final VisualizerInfoPresetCriteriaMaker visualizerInfoPresetCriteriaMaker;
+    private final VisualizerSupportPresetCriteriaMaker visualizerSupportPresetCriteriaMaker;
+    private final ExecutorInfoPresetCriteriaMaker executorInfoPresetCriteriaMaker;
+    private final ExecutorSupportPresetCriteriaMaker executorSupportPresetCriteriaMaker;
 
     @Value("${hibernate.jdbc.batch_size}")
     private int batchSize;
@@ -42,7 +50,11 @@ public class DaoConfiguration {
             CabinetPresetCriteriaMaker cabinetPresetCriteriaMaker,
             FolderPresetCriteriaMaker folderPresetCriteriaMaker,
             ToolPresetCriteriaMaker toolPresetCriteriaMaker,
-            FavoritePresetCriteriaMaker favoritePresetCriteriaMaker
+            FavoritePresetCriteriaMaker favoritePresetCriteriaMaker,
+            VisualizerInfoPresetCriteriaMaker visualizerInfoPresetCriteriaMaker,
+            VisualizerSupportPresetCriteriaMaker visualizerSupportPresetCriteriaMaker,
+            ExecutorInfoPresetCriteriaMaker executorInfoPresetCriteriaMaker,
+            ExecutorSupportPresetCriteriaMaker executorSupportPresetCriteriaMaker
     ) {
         this.template = template;
         this.pocaPresetCriteriaMaker = pocaPresetCriteriaMaker;
@@ -50,6 +62,10 @@ public class DaoConfiguration {
         this.folderPresetCriteriaMaker = folderPresetCriteriaMaker;
         this.toolPresetCriteriaMaker = toolPresetCriteriaMaker;
         this.favoritePresetCriteriaMaker = favoritePresetCriteriaMaker;
+        this.visualizerInfoPresetCriteriaMaker = visualizerInfoPresetCriteriaMaker;
+        this.visualizerSupportPresetCriteriaMaker = visualizerSupportPresetCriteriaMaker;
+        this.executorInfoPresetCriteriaMaker = executorInfoPresetCriteriaMaker;
+        this.executorSupportPresetCriteriaMaker = executorSupportPresetCriteriaMaker;
     }
 
     @Bean
@@ -220,6 +236,162 @@ public class DaoConfiguration {
                 new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, HibernateMapper.class),
                 HibernateFavorite.class,
                 favoritePresetCriteriaMaker
+        );
+    }
+
+    @Bean
+    public HibernateBatchBaseDao<VisualizerKey, HibernateVisualizerKey, VisualizerInfo, HibernateVisualizerInfo>
+    visualizerInfoHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VisualizerKey.class, HibernateVisualizerKey.class, HibernateMapper.class
+                ),
+                new MapStructBeanTransformer<>(
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                ),
+                HibernateVisualizerInfo.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean
+    public HibernateEntireLookupDao<VisualizerInfo, HibernateVisualizerInfo> visualizerInfoHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                ),
+                HibernateVisualizerInfo.class
+        );
+    }
+
+    @Bean
+    public HibernatePresetLookupDao<VisualizerInfo, HibernateVisualizerInfo> visualizerInfoHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                ),
+                HibernateVisualizerInfo.class,
+                visualizerInfoPresetCriteriaMaker
+        );
+    }
+
+    @Bean
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, VisualizerSupport, HibernateVisualizerSupport>
+    visualizerSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                ),
+                HibernateVisualizerSupport.class
+        );
+    }
+
+    @Bean
+    public HibernateEntireLookupDao<VisualizerSupport, HibernateVisualizerSupport>
+    visualizerSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                ),
+                HibernateVisualizerSupport.class
+        );
+    }
+
+    @Bean
+    public HibernatePresetLookupDao<VisualizerSupport, HibernateVisualizerSupport>
+    visualizerSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                ),
+                HibernateVisualizerSupport.class,
+                visualizerSupportPresetCriteriaMaker
+        );
+    }
+
+    @Bean
+    public HibernateBatchBaseDao<ExecutorKey, HibernateExecutorKey, ExecutorInfo, HibernateExecutorInfo>
+    executorInfoHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        ExecutorKey.class, HibernateExecutorKey.class, HibernateMapper.class
+                ),
+                new MapStructBeanTransformer<>(
+                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                ),
+                HibernateExecutorInfo.class,
+                new DefaultDeletionMod<>(),
+                batchSize
+        );
+    }
+
+    @Bean
+    public HibernateEntireLookupDao<ExecutorInfo, HibernateExecutorInfo> executorInfoHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                ),
+                HibernateExecutorInfo.class
+        );
+    }
+
+    @Bean
+    public HibernatePresetLookupDao<ExecutorInfo, HibernateExecutorInfo> executorInfoHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                ),
+                HibernateExecutorInfo.class,
+                executorInfoPresetCriteriaMaker
+        );
+    }
+
+    @Bean
+    public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, ExecutorSupport, HibernateExecutorSupport>
+    executorSupportHibernateBatchBaseDao() {
+        return new HibernateBatchBaseDao<>(
+                template,
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(
+                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                ),
+                HibernateExecutorSupport.class
+        );
+    }
+
+    @Bean
+    public HibernateEntireLookupDao<ExecutorSupport, HibernateExecutorSupport>
+    executorSupportHibernateEntireLookupDao() {
+        return new HibernateEntireLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                ),
+                HibernateExecutorSupport.class
+        );
+    }
+
+    @Bean
+    public HibernatePresetLookupDao<ExecutorSupport, HibernateExecutorSupport>
+    executorSupportHibernatePresetLookupDao() {
+        return new HibernatePresetLookupDao<>(
+                template,
+                new MapStructBeanTransformer<>(
+                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                ),
+                HibernateExecutorSupport.class,
+                executorSupportPresetCriteriaMaker
         );
     }
 }

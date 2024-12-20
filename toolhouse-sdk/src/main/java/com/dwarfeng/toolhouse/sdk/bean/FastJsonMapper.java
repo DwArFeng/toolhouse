@@ -5,11 +5,15 @@ import com.dwarfeng.subgrade.sdk.bean.key.FastJsonStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.sdk.bean.entity.*;
+import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonExecutorKey;
 import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonFavoriteKey;
 import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonPocaKey;
+import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonVisualizerKey;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
@@ -42,6 +46,16 @@ public interface FastJsonMapper {
     @InheritInverseConfiguration
     FavoriteKey favoriteKeyFromFastJson(FastJsonFavoriteKey fastJsonFavoriteKey);
 
+    FastJsonVisualizerKey visualizerKeyToFastJson(VisualizerKey visualizerKey);
+
+    @InheritInverseConfiguration
+    VisualizerKey visualizerKeyFromFastJson(FastJsonVisualizerKey fastJsonVisualizerKey);
+
+    FastJsonExecutorKey executorKeyToFastJson(ExecutorKey executorKey);
+
+    @InheritInverseConfiguration
+    ExecutorKey executorKeyFromFastJson(FastJsonExecutorKey fastJsonExecutorKey);
+
     FastJsonPoca pocaToFastJson(Poca poca);
 
     @InheritInverseConfiguration
@@ -71,4 +85,24 @@ public interface FastJsonMapper {
 
     @InheritInverseConfiguration
     Favorite favoriteFromFastJson(FastJsonFavorite fastJsonFavorite);
+
+    FastJsonVisualizerInfo visualizerInfoToFastJson(VisualizerInfo visualizerInfo);
+
+    @InheritInverseConfiguration
+    VisualizerInfo visualizerInfoFromFastJson(FastJsonVisualizerInfo fastJsonVisualizerInfo);
+
+    FastJsonVisualizerSupport visualizerSupportToFastJson(VisualizerSupport visualizerSupport);
+
+    @InheritInverseConfiguration
+    VisualizerSupport visualizerSupportFromFastJson(FastJsonVisualizerSupport fastJsonVisualizerSupport);
+
+    FastJsonExecutorInfo executorInfoToFastJson(ExecutorInfo executorInfo);
+
+    @InheritInverseConfiguration
+    ExecutorInfo executorInfoFromFastJson(FastJsonExecutorInfo fastJsonExecutorInfo);
+
+    FastJsonExecutorSupport executorSupportToFastJson(ExecutorSupport executorSupport);
+
+    @InheritInverseConfiguration
+    ExecutorSupport executorSupportFromFastJson(FastJsonExecutorSupport fastJsonExecutorSupport);
 }

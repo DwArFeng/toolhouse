@@ -5,11 +5,15 @@ import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.impl.bean.entity.*;
+import com.dwarfeng.toolhouse.impl.bean.key.HibernateExecutorKey;
 import com.dwarfeng.toolhouse.impl.bean.key.HibernateFavoriteKey;
 import com.dwarfeng.toolhouse.impl.bean.key.HibernatePocaKey;
+import com.dwarfeng.toolhouse.impl.bean.key.HibernateVisualizerKey;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -43,6 +47,16 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     FavoriteKey favoriteKeyFromHibernate(HibernateFavoriteKey hibernateFavoriteKey);
 
+    HibernateVisualizerKey visualizerKeyToHibernate(VisualizerKey visualizerKey);
+
+    @InheritInverseConfiguration
+    VisualizerKey visualizerKeyFromHibernate(HibernateVisualizerKey hibernateVisualizerKey);
+
+    HibernateExecutorKey executorKeyToHibernate(ExecutorKey executorKey);
+
+    @InheritInverseConfiguration
+    ExecutorKey executorKeyFromHibernate(HibernateExecutorKey hibernateExecutorKey);
+
     @Mapping(target = "userStringId", ignore = true)
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "cabinetLongId", ignore = true)
@@ -73,6 +87,8 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     Folder folderFromHibernate(HibernateFolder hibernateFolder);
 
+    @Mapping(target = "executorInfos", ignore = true)
+    @Mapping(target = "visualizerInfos", ignore = true)
     @Mapping(target = "longId", ignore = true)
     @Mapping(target = "folderLongId", ignore = true)
     @Mapping(target = "folder", ignore = true)
@@ -99,4 +115,32 @@ public interface HibernateMapper {
 
     @InheritInverseConfiguration
     Favorite favoriteFromHibernate(HibernateFavorite hibernateFavorite);
+
+    @Mapping(target = "visualizerStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "tool", ignore = true)
+    HibernateVisualizerInfo visualizerInfoToHibernate(VisualizerInfo visualizerInfo);
+
+    @InheritInverseConfiguration
+    VisualizerInfo visualizerInfoFromHibernate(HibernateVisualizerInfo hibernateVisualizerInfo);
+
+    @Mapping(target = "stringId", ignore = true)
+    HibernateVisualizerSupport visualizerSupportToHibernate(VisualizerSupport visualizerSupport);
+
+    @InheritInverseConfiguration
+    VisualizerSupport visualizerSupportFromHibernate(HibernateVisualizerSupport hibernateVisualizerSupport);
+
+    @Mapping(target = "executorStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "tool", ignore = true)
+    HibernateExecutorInfo executorInfoToHibernate(ExecutorInfo executorInfo);
+
+    @InheritInverseConfiguration
+    ExecutorInfo executorInfoFromHibernate(HibernateExecutorInfo hibernateExecutorInfo);
+
+    @Mapping(target = "stringId", ignore = true)
+    HibernateExecutorSupport executorSupportToHibernate(ExecutorSupport executorSupport);
+
+    @InheritInverseConfiguration
+    ExecutorSupport executorSupportFromHibernate(HibernateExecutorSupport hibernateExecutorSupport);
 }

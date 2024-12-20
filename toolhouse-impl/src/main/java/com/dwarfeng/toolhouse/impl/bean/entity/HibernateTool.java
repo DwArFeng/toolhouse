@@ -6,15 +6,17 @@ import com.dwarfeng.toolhouse.sdk.util.Constraints;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @IdClass(HibernateLongIdKey.class)
 @Table(name = "tbl_tool")
 public class HibernateTool implements Bean {
 
-    private static final long serialVersionUID = -7989381235534807379L;
-
+    private static final long serialVersionUID = -7115117511972316568L;
+    
     // -----------------------------------------------------------主键-----------------------------------------------------------
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -50,6 +52,13 @@ public class HibernateTool implements Bean {
             @JoinColumn(name = "cabinet_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateCabinet cabinet;
+
+    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVisualizerInfo.class, mappedBy = "tool")
+    private Set<HibernateVisualizerInfo> visualizerInfos = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateExecutorInfo.class, mappedBy = "tool")
+    private Set<HibernateExecutorInfo> executorInfos = new HashSet<>();
 
     public HibernateTool() {
     }
@@ -142,6 +151,22 @@ public class HibernateTool implements Bean {
 
     public void setCabinet(HibernateCabinet cabinet) {
         this.cabinet = cabinet;
+    }
+
+    public Set<HibernateVisualizerInfo> getVisualizerInfos() {
+        return visualizerInfos;
+    }
+
+    public void setVisualizerInfos(Set<HibernateVisualizerInfo> visualizerInfos) {
+        this.visualizerInfos = visualizerInfos;
+    }
+
+    public Set<HibernateExecutorInfo> getExecutorInfos() {
+        return executorInfos;
+    }
+
+    public void setExecutorInfos(Set<HibernateExecutorInfo> executorInfos) {
+        this.executorInfos = executorInfos;
     }
 
     @Override

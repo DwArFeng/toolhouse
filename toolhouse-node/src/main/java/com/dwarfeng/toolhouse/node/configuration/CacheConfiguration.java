@@ -8,11 +8,15 @@ import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.sdk.bean.FastJsonMapper;
 import com.dwarfeng.toolhouse.sdk.bean.entity.*;
+import com.dwarfeng.toolhouse.sdk.bean.key.formatter.ExecutorStringKeyFormatter;
 import com.dwarfeng.toolhouse.sdk.bean.key.formatter.FavoriteStringKeyFormatter;
 import com.dwarfeng.toolhouse.sdk.bean.key.formatter.PocaStringKeyFormatter;
+import com.dwarfeng.toolhouse.sdk.bean.key.formatter.VisualizerStringKeyFormatter;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +39,15 @@ public class CacheConfiguration {
     private String toolPrefix;
     @Value("${cache.prefix.entity.favorite}")
     private String favoritePrefix;
+    @Value("${cache.prefix.entity.visualizer_info}")
+    private String visualizerInfoPrefix;
+    @Value("${cache.prefix.entity.visualizer_support}")
+    private String visualizerSupportPrefix;
+    @Value("${cache.prefix.entity.executor_info}")
+    private String executorInfoPrefix;
+    @Value("${cache.prefix.entity.executor_support}")
+    private String executorSupportPrefix;
+
 
     public CacheConfiguration(RedisTemplate<String, ?> template) {
         this.template = template;
@@ -97,6 +110,53 @@ public class CacheConfiguration {
                 (RedisTemplate<String, FastJsonFavorite>) template,
                 new FavoriteStringKeyFormatter(favoritePrefix),
                 new MapStructBeanTransformer<>(Favorite.class, FastJsonFavorite.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<VisualizerKey, VisualizerInfo, FastJsonVisualizerInfo>
+    visualizerInfoRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVisualizerInfo>) template,
+                new VisualizerStringKeyFormatter(visualizerInfoPrefix),
+                new MapStructBeanTransformer<>(VisualizerInfo.class, FastJsonVisualizerInfo.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, VisualizerSupport, FastJsonVisualizerSupport>
+    visualizerSupportRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVisualizerSupport>) template,
+                new StringIdStringKeyFormatter(visualizerSupportPrefix),
+                new MapStructBeanTransformer<>(
+                        VisualizerSupport.class, FastJsonVisualizerSupport.class, FastJsonMapper.class
+                )
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<ExecutorKey, ExecutorInfo, FastJsonExecutorInfo> executorInfoRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonExecutorInfo>) template,
+                new ExecutorStringKeyFormatter(executorInfoPrefix),
+                new MapStructBeanTransformer<>(ExecutorInfo.class, FastJsonExecutorInfo.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<StringIdKey, ExecutorSupport, FastJsonExecutorSupport>
+    executorSupportRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonExecutorSupport>) template,
+                new StringIdStringKeyFormatter(executorSupportPrefix),
+                new MapStructBeanTransformer<>(
+                        ExecutorSupport.class, FastJsonExecutorSupport.class, FastJsonMapper.class
+                )
         );
     }
 }

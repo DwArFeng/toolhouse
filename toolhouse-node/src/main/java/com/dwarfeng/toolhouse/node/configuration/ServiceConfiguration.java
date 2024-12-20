@@ -13,10 +13,11 @@ import com.dwarfeng.toolhouse.impl.service.operation.FolderCrudOperation;
 import com.dwarfeng.toolhouse.impl.service.operation.ToolCrudOperation;
 import com.dwarfeng.toolhouse.impl.service.operation.UserCrudOperation;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
-import com.dwarfeng.toolhouse.stack.cache.FavoriteCache;
-import com.dwarfeng.toolhouse.stack.cache.PocaCache;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
+import com.dwarfeng.toolhouse.stack.cache.*;
 import com.dwarfeng.toolhouse.stack.dao.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -39,11 +40,27 @@ public class ServiceConfiguration {
     private final ToolDao toolDao;
     private final FavoriteDao favoriteDao;
     private final FavoriteCache favoriteCache;
+    private final VisualizerInfoDao visualizerInfoDao;
+    private final VisualizerInfoCache visualizerInfoCache;
+    private final VisualizerSupportCache visualizerSupportCache;
+    private final VisualizerSupportDao visualizerSupportDao;
+    private final ExecutorInfoDao executorInfoDao;
+    private final ExecutorInfoCache executorInfoCache;
+    private final ExecutorSupportCache executorSupportCache;
+    private final ExecutorSupportDao executorSupportDao;
 
     @Value("${cache.timeout.entity.poca}")
     private long pocaTimeout;
     @Value("${cache.timeout.entity.favorite}")
     private long favoriteTimeout;
+    @Value("${cache.timeout.entity.visualizer_info}")
+    private long visualizerInfoTimeout;
+    @Value("${cache.timeout.entity.visualizer_support}")
+    private long visualizerSupportTimeout;
+    @Value("${cache.timeout.entity.executor_info}")
+    private long executorInfoTimeout;
+    @Value("${cache.timeout.entity.executor_support}")
+    private long executorSupportTimeout;
 
     public ServiceConfiguration(
             ServiceExceptionMapperConfiguration serviceExceptionMapperConfiguration,
@@ -58,7 +75,15 @@ public class ServiceConfiguration {
             ToolCrudOperation toolCrudOperation,
             ToolDao toolDao,
             FavoriteDao favoriteDao,
-            FavoriteCache favoriteCache
+            FavoriteCache favoriteCache,
+            VisualizerInfoDao visualizerInfoDao,
+            VisualizerInfoCache visualizerInfoCache,
+            VisualizerSupportCache visualizerSupportCache,
+            VisualizerSupportDao visualizerSupportDao,
+            ExecutorInfoDao executorInfoDao,
+            ExecutorInfoCache executorInfoCache,
+            ExecutorSupportCache executorSupportCache,
+            ExecutorSupportDao executorSupportDao
     ) {
         this.serviceExceptionMapperConfiguration = serviceExceptionMapperConfiguration;
         this.generateConfiguration = generateConfiguration;
@@ -73,6 +98,14 @@ public class ServiceConfiguration {
         this.toolDao = toolDao;
         this.favoriteDao = favoriteDao;
         this.favoriteCache = favoriteCache;
+        this.visualizerInfoDao = visualizerInfoDao;
+        this.visualizerInfoCache = visualizerInfoCache;
+        this.visualizerSupportCache = visualizerSupportCache;
+        this.visualizerSupportDao = visualizerSupportDao;
+        this.executorInfoDao = executorInfoDao;
+        this.executorInfoCache = executorInfoCache;
+        this.executorSupportCache = executorSupportCache;
+        this.executorSupportDao = executorSupportDao;
     }
 
     @Bean
@@ -226,6 +259,126 @@ public class ServiceConfiguration {
                 serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
                 LogLevel.WARN,
                 favoriteDao
+        );
+    }
+
+    @Bean
+    public GeneralBatchCrudService<VisualizerKey, VisualizerInfo> visualizerInfoBatchGeneralCrudService() {
+        return new GeneralBatchCrudService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerInfoDao,
+                visualizerInfoCache,
+                new ExceptionKeyGenerator<>(),
+                visualizerInfoTimeout
+        );
+    }
+
+    @Bean
+    public DaoOnlyEntireLookupService<VisualizerInfo> visualizerInfoDaoOnlyEntireLookupService() {
+        return new DaoOnlyEntireLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerInfoDao
+        );
+    }
+
+    @Bean
+    public DaoOnlyPresetLookupService<VisualizerInfo> visualizerInfoDaoOnlyPresetLookupService() {
+        return new DaoOnlyPresetLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerInfoDao
+        );
+    }
+
+    @Bean
+    public GeneralBatchCrudService<StringIdKey, VisualizerSupport> visualizerSupportGeneralBatchCrudService() {
+        return new GeneralBatchCrudService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerSupportDao,
+                visualizerSupportCache,
+                new ExceptionKeyGenerator<>(),
+                visualizerSupportTimeout
+        );
+    }
+
+    @Bean
+    public DaoOnlyEntireLookupService<VisualizerSupport> visualizerSupportDaoOnlyEntireLookupService() {
+        return new DaoOnlyEntireLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerSupportDao
+        );
+    }
+
+    @Bean
+    public DaoOnlyPresetLookupService<VisualizerSupport> visualizerSupportDaoOnlyPresetLookupService() {
+        return new DaoOnlyPresetLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                visualizerSupportDao
+        );
+    }
+
+    @Bean
+    public GeneralBatchCrudService<ExecutorKey, ExecutorInfo> executorInfoBatchGeneralCrudService() {
+        return new GeneralBatchCrudService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorInfoDao,
+                executorInfoCache,
+                new ExceptionKeyGenerator<>(),
+                executorInfoTimeout
+        );
+    }
+
+    @Bean
+    public DaoOnlyEntireLookupService<ExecutorInfo> executorInfoDaoOnlyEntireLookupService() {
+        return new DaoOnlyEntireLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorInfoDao
+        );
+    }
+
+    @Bean
+    public DaoOnlyPresetLookupService<ExecutorInfo> executorInfoDaoOnlyPresetLookupService() {
+        return new DaoOnlyPresetLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorInfoDao
+        );
+    }
+
+    @Bean
+    public GeneralBatchCrudService<StringIdKey, ExecutorSupport> executorSupportGeneralBatchCrudService() {
+        return new GeneralBatchCrudService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorSupportDao,
+                executorSupportCache,
+                new ExceptionKeyGenerator<>(),
+                executorSupportTimeout
+        );
+    }
+
+    @Bean
+    public DaoOnlyEntireLookupService<ExecutorSupport> executorSupportDaoOnlyEntireLookupService() {
+        return new DaoOnlyEntireLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorSupportDao
+        );
+    }
+
+    @Bean
+    public DaoOnlyPresetLookupService<ExecutorSupport> executorSupportDaoOnlyPresetLookupService() {
+        return new DaoOnlyPresetLookupService<>(
+                serviceExceptionMapperConfiguration.mapServiceExceptionMapper(),
+                LogLevel.WARN,
+                executorSupportDao
         );
     }
 }
