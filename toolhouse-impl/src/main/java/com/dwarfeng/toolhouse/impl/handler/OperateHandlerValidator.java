@@ -8,7 +8,9 @@ import com.dwarfeng.toolhouse.sdk.util.Constants;
 import com.dwarfeng.toolhouse.stack.bean.entity.Folder;
 import com.dwarfeng.toolhouse.stack.bean.entity.Poca;
 import com.dwarfeng.toolhouse.stack.bean.entity.Tool;
+import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
+import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
 import com.dwarfeng.toolhouse.stack.exception.*;
 import com.dwarfeng.toolhouse.stack.service.*;
 import org.springframework.stereotype.Component;
@@ -32,19 +34,25 @@ public class OperateHandlerValidator {
     private final CabinetMaintainService cabinetMaintainService;
     private final FolderMaintainService folderMaintainService;
     private final ToolMaintainService toolMaintainService;
+    private final VisualizerInfoMaintainService visualizerInfoMaintainService;
+    private final ExecutorInfoMaintainService executorInfoMaintainService;
 
     public OperateHandlerValidator(
             UserMaintainService userMaintainService,
             PocaMaintainService pocaMaintainService,
             CabinetMaintainService cabinetMaintainService,
             FolderMaintainService folderMaintainService,
-            ToolMaintainService toolMaintainService
+            ToolMaintainService toolMaintainService,
+            VisualizerInfoMaintainService visualizerInfoMaintainService,
+            ExecutorInfoMaintainService executorInfoMaintainService
     ) {
         this.userMaintainService = userMaintainService;
         this.pocaMaintainService = pocaMaintainService;
         this.cabinetMaintainService = cabinetMaintainService;
         this.folderMaintainService = folderMaintainService;
         this.toolMaintainService = toolMaintainService;
+        this.visualizerInfoMaintainService = visualizerInfoMaintainService;
+        this.executorInfoMaintainService = executorInfoMaintainService;
     }
 
     public void makeSureUserExists(StringIdKey userKey) throws HandlerException {
@@ -236,6 +244,26 @@ public class OperateHandlerValidator {
                 throw new IllegalFolderStateException(leftFolderKey);
             }
             makeSureCabinetIdenticalForCabinet(leftFolderKey, childSetKey);
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureVisualizerInfoExists(VisualizerKey visualizerKey) throws HandlerException {
+        try {
+            if (Objects.isNull(visualizerKey) || !visualizerInfoMaintainService.exists(visualizerKey)) {
+                throw new VisualizerInfoNotExistsException(visualizerKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureExecutorInfoExists(ExecutorKey executorKey) throws HandlerException {
+        try {
+            if (Objects.isNull(executorKey) || !executorInfoMaintainService.exists(executorKey)) {
+                throw new ExecutorInfoNotExistsException(executorKey);
+            }
         } catch (ServiceException e) {
             throw new HandlerException(e);
         }

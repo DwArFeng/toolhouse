@@ -74,6 +74,11 @@
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.VisualizerInfoOperateService"
+            ref="visualizerInfoOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.VisualizerSupportMaintainService"
             ref="visualizerSupportMaintainServiceImpl"
             group="${dubbo.provider.group}"
@@ -81,6 +86,11 @@
     <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.ExecutorInfoMaintainService"
             ref="executorInfoMaintainServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.ExecutorInfoOperateService"
+            ref="executorInfoOperateServiceImpl"
             group="${dubbo.provider.group}"
     />
     <dubbo:service

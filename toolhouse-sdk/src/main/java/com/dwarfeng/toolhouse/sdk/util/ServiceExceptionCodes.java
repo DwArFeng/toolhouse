@@ -30,6 +30,10 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(70), "note item not exists");
     public static final ServiceException.Code ILLEGAL_TOOL_STATE =
             new ServiceException.Code(offset(80), "illegal note item state");
+    public static final ServiceException.Code VISUALIZER_INFO_NOT_EXISTS =
+            new ServiceException.Code(offset(90), "visualizer info not exists");
+    public static final ServiceException.Code EXECUTOR_INFO_NOT_EXISTS =
+            new ServiceException.Code(offset(100), "executor info not exists");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -63,6 +67,8 @@ public final class ServiceExceptionCodes {
         CABINET_NOT_IDENTICAL.setCode(offset(60));
         TOOL_NOT_EXISTS.setCode(offset(70));
         ILLEGAL_TOOL_STATE.setCode(offset(80));
+        VISUALIZER_INFO_NOT_EXISTS.setCode(offset(90));
+        EXECUTOR_INFO_NOT_EXISTS.setCode(offset(100));
     }
 
     private ServiceExceptionCodes() {

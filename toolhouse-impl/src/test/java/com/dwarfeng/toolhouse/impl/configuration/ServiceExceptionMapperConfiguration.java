@@ -25,6 +25,8 @@ public class ServiceExceptionMapperConfiguration {
         destination.put(CabinetNotIdenticalException.class, ServiceExceptionCodes.CABINET_NOT_IDENTICAL);
         destination.put(ToolNotExistsException.class, ServiceExceptionCodes.TOOL_NOT_EXISTS);
         destination.put(IllegalToolStateException.class, ServiceExceptionCodes.ILLEGAL_TOOL_STATE);
+        destination.put(VisualizerInfoNotExistsException.class, ServiceExceptionCodes.VISUALIZER_INFO_NOT_EXISTS);
+        destination.put(ExecutorInfoNotExistsException.class, ServiceExceptionCodes.EXECUTOR_INFO_NOT_EXISTS);
         return new MapServiceExceptionMapper(destination, com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.UNDEFINED);
     }
 }

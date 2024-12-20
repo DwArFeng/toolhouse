@@ -5,6 +5,8 @@
 #### 功能构建
 
 - 增加操作服务。
+  - com.dwarfeng.toolhouse.stack.service.ExecutorInfoOperateService。
+  - com.dwarfeng.toolhouse.stack.service.VisualizerInfoOperateService。
   - com.dwarfeng.toolhouse.stack.service.CabinetOperateService。
   - com.dwarfeng.toolhouse.stack.service.FolderOperateService。
   - com.dwarfeng.toolhouse.stack.service.ToolOperateService。
