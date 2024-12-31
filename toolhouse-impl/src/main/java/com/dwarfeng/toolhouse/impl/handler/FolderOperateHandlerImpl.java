@@ -21,16 +21,16 @@ public class FolderOperateHandlerImpl implements FolderOperateHandler {
     private final FolderMaintainService folderMaintainService;
     private final CabinetMaintainService cabinetMaintainService;
 
-    private final OperateHandlerValidator operateHandlerValidator;
+    private final HandlerValidator handlerValidator;
 
     public FolderOperateHandlerImpl(
             FolderMaintainService folderMaintainService,
             CabinetMaintainService cabinetMaintainService,
-            OperateHandlerValidator operateHandlerValidator
+            HandlerValidator handlerValidator
     ) {
         this.folderMaintainService = folderMaintainService;
         this.cabinetMaintainService = cabinetMaintainService;
-        this.operateHandlerValidator = operateHandlerValidator;
+        this.handlerValidator = handlerValidator;
     }
 
     @Override
@@ -41,21 +41,21 @@ public class FolderOperateHandlerImpl implements FolderOperateHandler {
             LongIdKey parentKey = folderCreateInfo.getParentKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认父文件夹存在。
             if (Objects.nonNull(parentKey)) {
-                operateHandlerValidator.makeSureFolderExists(parentKey);
+                handlerValidator.makeSureFolderExists(parentKey);
             }
 
             // 确认用户有权限操作指定的工具柜。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
 
             // 确认文件夹与父文件夹的工具柜存在。
-            operateHandlerValidator.makeSureCabinetIdenticalForCabinet(parentKey, cabinetKey);
+            handlerValidator.makeSureCabinetIdenticalForCabinet(parentKey, cabinetKey);
 
             // 更新工具柜实体的字段。
             Cabinet cabinet = cabinetMaintainService.get(cabinetKey);
@@ -80,26 +80,26 @@ public class FolderOperateHandlerImpl implements FolderOperateHandler {
             LongIdKey parentKey = folderUpdateInfo.getParentKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认文件夹存在。
-            operateHandlerValidator.makeSureFolderExists(folderKey);
+            handlerValidator.makeSureFolderExists(folderKey);
 
             // 确认父文件夹存在。
             if (Objects.nonNull(parentKey)) {
-                operateHandlerValidator.makeSureFolderExists(parentKey);
+                handlerValidator.makeSureFolderExists(parentKey);
             }
 
             // 确认工具柜存在。
             Folder folder = folderMaintainService.get(folderKey);
             LongIdKey cabinetKey = folder.getCabinetKey();
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认用户有权限操作指定的文件夹。
-            operateHandlerValidator.makeSureUserModifyPermittedForFolder(userKey, folderKey);
+            handlerValidator.makeSureUserModifyPermittedForFolder(userKey, folderKey);
 
             // 确认文件夹与父文件夹的工具柜存在。
-            operateHandlerValidator.makeSureCabinetIdenticalForFolder(parentKey, folderKey);
+            handlerValidator.makeSureCabinetIdenticalForFolder(parentKey, folderKey);
 
             // 更新工具柜实体的字段。
             Cabinet cabinet = cabinetMaintainService.get(cabinetKey);
@@ -121,18 +121,18 @@ public class FolderOperateHandlerImpl implements FolderOperateHandler {
     public void removeFolder(StringIdKey userKey, LongIdKey folderKey) throws HandlerException {
         try {
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认文件夹存在。
-            operateHandlerValidator.makeSureFolderExists(folderKey);
+            handlerValidator.makeSureFolderExists(folderKey);
 
             // 确认工具柜存在。
             Folder folder = folderMaintainService.get(folderKey);
             LongIdKey cabinetKey = folder.getCabinetKey();
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认用户有权限操作指定的工具柜节点。
-            operateHandlerValidator.makeSureUserModifyPermittedForFolder(userKey, folderKey);
+            handlerValidator.makeSureUserModifyPermittedForFolder(userKey, folderKey);
 
             // 更新工具柜实体的字段。
             Cabinet cabinet = cabinetMaintainService.get(cabinetKey);

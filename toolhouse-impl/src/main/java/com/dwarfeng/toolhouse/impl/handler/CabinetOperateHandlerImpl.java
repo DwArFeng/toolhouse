@@ -27,18 +27,18 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
     private final PocaMaintainService pocaMaintainService;
     private final FavoriteMaintainService favoriteMaintainService;
 
-    private final OperateHandlerValidator operateHandlerValidator;
+    private final HandlerValidator handlerValidator;
 
     public CabinetOperateHandlerImpl(
             CabinetMaintainService cabinetMaintainService,
             PocaMaintainService pocaMaintainService,
             FavoriteMaintainService favoriteMaintainService,
-            OperateHandlerValidator operateHandlerValidator
+            HandlerValidator handlerValidator
     ) {
         this.cabinetMaintainService = cabinetMaintainService;
         this.pocaMaintainService = pocaMaintainService;
         this.favoriteMaintainService = favoriteMaintainService;
-        this.operateHandlerValidator = operateHandlerValidator;
+        this.handlerValidator = handlerValidator;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
             throws HandlerException {
         try {
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 根据 cabinetCreateInfo 以及创建的规则组合 工具柜 实体。
             Date currentDate = new Date();
@@ -88,13 +88,13 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
             LongIdKey cabinetKey = cabinetUpdateInfo.getCabinetKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认用户有权限操作指定的工具柜。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
 
             // 根据 cabinetUpdateInfo 以及更新的规则设置 工具柜 实体。
             Cabinet cabinet = cabinetMaintainService.get(cabinetKey);
@@ -123,13 +123,13 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
     public void removeCabinet(StringIdKey userKey, LongIdKey cabinetKey) throws HandlerException {
         try {
             // 1. 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 2. 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 3. 确认用户有权限操作指定的工具柜。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
 
             // 4. 删除指定主键的工具柜。
             cabinetMaintainService.delete(cabinetKey);
@@ -155,17 +155,17 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
             }
 
             // 2. 确认 permissionLevel 有效。
-            operateHandlerValidator.makeSurePermissionLevelValid(permissionLevel);
+            handlerValidator.makeSurePermissionLevelValid(permissionLevel);
 
             // 3. 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(ownerUserKey);
-            operateHandlerValidator.makeSureUserExists(targetUserKey);
+            handlerValidator.makeSureUserExists(ownerUserKey);
+            handlerValidator.makeSureUserExists(targetUserKey);
 
             // 4. 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 5. 确认用户有权限操作指定的工具柜。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(ownerUserKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(ownerUserKey, cabinetKey);
 
             // 6. 通过入口信息组合权限实体，并进行插入或更新操作。
             String permissionLabel;
@@ -204,14 +204,14 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
             }
 
             // 2. 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(ownerUserKey);
-            operateHandlerValidator.makeSureUserExists(targetUserKey);
+            handlerValidator.makeSureUserExists(ownerUserKey);
+            handlerValidator.makeSureUserExists(targetUserKey);
 
             // 3. 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 4. 确认用户有权限操作指定的工具柜。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(ownerUserKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(ownerUserKey, cabinetKey);
 
             // 5. 通过入口信息组合权限实体主键，并进行存在删除操作。
             PocaKey pocaKey = new PocaKey(cabinetKey.getLongId(), targetUserKey.getStringId());
@@ -228,11 +228,11 @@ public class CabinetOperateHandlerImpl implements CabinetOperateHandler {
             LongIdKey cabinetKey = info.getCabinetKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
             // 确认用户有权限查看指定的工具柜。
-            operateHandlerValidator.makeSureUserInspectPermittedForCabinet(operateUserKey, cabinetKey);
+            handlerValidator.makeSureUserInspectPermittedForCabinet(operateUserKey, cabinetKey);
 
             // 构造收藏实体主键。
             FavoriteKey favoriteKey = new FavoriteKey(cabinetKey.getLongId(), operateUserKey.getStringId());

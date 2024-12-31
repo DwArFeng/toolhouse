@@ -18,14 +18,14 @@ public class VisualizerInfoOperateHandlerImpl implements VisualizerInfoOperateHa
 
     private final VisualizerInfoMaintainService visualizerInfoMaintainService;
 
-    private final OperateHandlerValidator operateHandlerValidator;
+    private final HandlerValidator handlerValidator;
 
     public VisualizerInfoOperateHandlerImpl(
             VisualizerInfoMaintainService visualizerInfoMaintainService,
-            OperateHandlerValidator operateHandlerValidator
+            HandlerValidator handlerValidator
     ) {
         this.visualizerInfoMaintainService = visualizerInfoMaintainService;
-        this.operateHandlerValidator = operateHandlerValidator;
+        this.handlerValidator = handlerValidator;
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -41,11 +41,11 @@ public class VisualizerInfoOperateHandlerImpl implements VisualizerInfoOperateHa
             String remark = info.getRemark();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认工具存在。
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 根据 info 以及创建的规则组合 可视化器信息 实体。
             VisualizerInfo visualizerInfo = new VisualizerInfo(
@@ -70,14 +70,14 @@ public class VisualizerInfoOperateHandlerImpl implements VisualizerInfoOperateHa
             String remark = info.getRemark();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认可视化器信息存在。
-            operateHandlerValidator.makeSureVisualizerInfoExists(visualizerKey);
+            handlerValidator.makeSureVisualizerInfoExists(visualizerKey);
             // 确认工具存在。
             LongIdKey toolKey = new LongIdKey(visualizerKey.getToolLongId());
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 根据 info 以及更新的规则设置 可视化器信息 实体。
             VisualizerInfo visualizerInfo = visualizerInfoMaintainService.get(visualizerKey);
@@ -100,14 +100,14 @@ public class VisualizerInfoOperateHandlerImpl implements VisualizerInfoOperateHa
             VisualizerKey visualizerKey = info.getVisualizerKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认可视化器信息存在。
-            operateHandlerValidator.makeSureVisualizerInfoExists(visualizerKey);
+            handlerValidator.makeSureVisualizerInfoExists(visualizerKey);
             // 确认工具存在。
             LongIdKey toolKey = new LongIdKey(visualizerKey.getToolLongId());
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 删除可视化器信息实体。
             visualizerInfoMaintainService.delete(visualizerKey);

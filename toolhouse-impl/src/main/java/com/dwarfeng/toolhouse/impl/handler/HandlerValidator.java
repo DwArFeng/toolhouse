@@ -27,7 +27,7 @@ import java.util.Objects;
  * @since beta-1.0.0
  */
 @Component
-public class OperateHandlerValidator {
+public class HandlerValidator {
 
     private final UserMaintainService userMaintainService;
     private final PocaMaintainService pocaMaintainService;
@@ -37,7 +37,7 @@ public class OperateHandlerValidator {
     private final VisualizerInfoMaintainService visualizerInfoMaintainService;
     private final ExecutorInfoMaintainService executorInfoMaintainService;
 
-    public OperateHandlerValidator(
+    public HandlerValidator(
             UserMaintainService userMaintainService,
             PocaMaintainService pocaMaintainService,
             CabinetMaintainService cabinetMaintainService,

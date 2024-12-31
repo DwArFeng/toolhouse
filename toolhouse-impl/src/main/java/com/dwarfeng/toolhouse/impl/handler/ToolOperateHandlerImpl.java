@@ -25,18 +25,18 @@ public class ToolOperateHandlerImpl implements ToolOperateHandler {
 
     private final KeyGenerator<LongIdKey> keyGenerator;
 
-    private final OperateHandlerValidator operateHandlerValidator;
+    private final HandlerValidator handlerValidator;
 
     public ToolOperateHandlerImpl(
             ToolMaintainService toolMaintainService,
             CabinetMaintainService cabinetMaintainService,
             KeyGenerator<LongIdKey> keyGenerator,
-            OperateHandlerValidator operateHandlerValidator
+            HandlerValidator handlerValidator
     ) {
         this.toolMaintainService = toolMaintainService;
         this.cabinetMaintainService = cabinetMaintainService;
         this.keyGenerator = keyGenerator;
-        this.operateHandlerValidator = operateHandlerValidator;
+        this.handlerValidator = handlerValidator;
     }
 
     @Override
@@ -46,21 +46,21 @@ public class ToolOperateHandlerImpl implements ToolOperateHandler {
             LongIdKey folderKey = toolCreateInfo.getFolderKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认文件夹存在。
             if (Objects.nonNull(folderKey)) {
-                operateHandlerValidator.makeSureFolderExists(folderKey);
+                handlerValidator.makeSureFolderExists(folderKey);
             }
 
             // 确认用户有权限操作指定的文件夹。
-            operateHandlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
+            handlerValidator.makeSureUserModifyPermittedForCabinet(userKey, cabinetKey);
 
             // 确认文件夹与父文件夹的工具柜存在。
-            operateHandlerValidator.makeSureCabinetIdenticalForCabinet(folderKey, cabinetKey);
+            handlerValidator.makeSureCabinetIdenticalForCabinet(folderKey, cabinetKey);
 
             // 分配主键。
             LongIdKey toolKey = keyGenerator.generate();
@@ -92,23 +92,23 @@ public class ToolOperateHandlerImpl implements ToolOperateHandler {
             LongIdKey folderKey = toolUpdateInfo.getFolderKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认工具存在。
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             Tool tool = toolMaintainService.get(toolKey);
             LongIdKey oldFolderKey = tool.getFolderKey();
 
             // 确认工具柜存在。
             LongIdKey cabinetKey = tool.getCabinetKey();
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(userKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(userKey, toolKey);
 
             // 确认文件夹与父文件夹的工具柜存在。
             if (!Objects.equals(folderKey, oldFolderKey)) {
-                operateHandlerValidator.makeSureCabinetIdenticalForFolder(oldFolderKey, folderKey);
+                handlerValidator.makeSureCabinetIdenticalForFolder(oldFolderKey, folderKey);
             }
 
             // 更新工具柜字段值，并调用维护服务进行更新。
@@ -132,18 +132,18 @@ public class ToolOperateHandlerImpl implements ToolOperateHandler {
     public void removeTool(StringIdKey userKey, LongIdKey toolKey) throws HandlerException {
         try {
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(userKey);
+            handlerValidator.makeSureUserExists(userKey);
 
             // 确认工具存在。
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             Tool tool = toolMaintainService.get(toolKey);
             LongIdKey cabinetKey = tool.getCabinetKey();
 
             // 确认工具柜存在。
-            operateHandlerValidator.makeSureCabinetExists(cabinetKey);
+            handlerValidator.makeSureCabinetExists(cabinetKey);
 
             // 确认用户有权限操作指定的银行卡。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(userKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(userKey, toolKey);
 
             // 存在删除指定的工具。
             toolMaintainService.delete(toolKey);

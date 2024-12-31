@@ -18,14 +18,14 @@ public class ExecutorInfoOperateHandlerImpl implements ExecutorInfoOperateHandle
 
     private final ExecutorInfoMaintainService executorInfoMaintainService;
 
-    private final OperateHandlerValidator operateHandlerValidator;
+    private final HandlerValidator handlerValidator;
 
     public ExecutorInfoOperateHandlerImpl(
             ExecutorInfoMaintainService executorInfoMaintainService,
-            OperateHandlerValidator operateHandlerValidator
+            HandlerValidator handlerValidator
     ) {
         this.executorInfoMaintainService = executorInfoMaintainService;
-        this.operateHandlerValidator = operateHandlerValidator;
+        this.handlerValidator = handlerValidator;
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -41,11 +41,11 @@ public class ExecutorInfoOperateHandlerImpl implements ExecutorInfoOperateHandle
             String remark = info.getRemark();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认工具存在。
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 根据 info 以及创建的规则组合 执行器信息 实体。
             ExecutorInfo executorInfo = new ExecutorInfo(
@@ -70,14 +70,14 @@ public class ExecutorInfoOperateHandlerImpl implements ExecutorInfoOperateHandle
             String remark = info.getRemark();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认执行器信息存在。
-            operateHandlerValidator.makeSureExecutorInfoExists(executorKey);
+            handlerValidator.makeSureExecutorInfoExists(executorKey);
             // 确认工具存在。
             LongIdKey toolKey = new LongIdKey(executorKey.getToolLongId());
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 根据 info 以及更新的规则设置 执行器信息 实体。
             ExecutorInfo executorInfo = executorInfoMaintainService.get(executorKey);
@@ -100,14 +100,14 @@ public class ExecutorInfoOperateHandlerImpl implements ExecutorInfoOperateHandle
             ExecutorKey executorKey = info.getExecutorKey();
 
             // 确认用户存在。
-            operateHandlerValidator.makeSureUserExists(operateUserKey);
+            handlerValidator.makeSureUserExists(operateUserKey);
             // 确认执行器信息存在。
-            operateHandlerValidator.makeSureExecutorInfoExists(executorKey);
+            handlerValidator.makeSureExecutorInfoExists(executorKey);
             // 确认工具存在。
             LongIdKey toolKey = new LongIdKey(executorKey.getToolLongId());
-            operateHandlerValidator.makeSureToolExists(toolKey);
+            handlerValidator.makeSureToolExists(toolKey);
             // 确认用户有权限操作指定的工具。
-            operateHandlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
+            handlerValidator.makeSureUserModifyPermittedForTool(operateUserKey, toolKey);
 
             // 删除执行器信息实体。
             executorInfoMaintainService.delete(executorKey);
