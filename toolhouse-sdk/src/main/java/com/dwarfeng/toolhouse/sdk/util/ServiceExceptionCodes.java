@@ -34,6 +34,10 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(90), "visualizer info not exists");
     public static final ServiceException.Code EXECUTOR_INFO_NOT_EXISTS =
             new ServiceException.Code(offset(100), "executor info not exists");
+    public static final ServiceException.Code SESSION_NOT_EXISTS =
+            new ServiceException.Code(offset(110), "session not exists");
+    public static final ServiceException.Code USER_NOT_CONSISTS =
+            new ServiceException.Code(offset(120), "user not consists");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -69,6 +73,8 @@ public final class ServiceExceptionCodes {
         ILLEGAL_TOOL_STATE.setCode(offset(80));
         VISUALIZER_INFO_NOT_EXISTS.setCode(offset(90));
         EXECUTOR_INFO_NOT_EXISTS.setCode(offset(100));
+        SESSION_NOT_EXISTS.setCode(offset(110));
+        USER_NOT_CONSISTS.setCode(offset(120));
     }
 
     private ServiceExceptionCodes() {

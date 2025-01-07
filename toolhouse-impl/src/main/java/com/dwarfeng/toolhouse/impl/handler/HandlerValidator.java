@@ -36,6 +36,7 @@ public class HandlerValidator {
     private final ToolMaintainService toolMaintainService;
     private final VisualizerInfoMaintainService visualizerInfoMaintainService;
     private final ExecutorInfoMaintainService executorInfoMaintainService;
+    private final SessionMaintainService sessionMaintainService;
 
     public HandlerValidator(
             UserMaintainService userMaintainService,
@@ -44,7 +45,8 @@ public class HandlerValidator {
             FolderMaintainService folderMaintainService,
             ToolMaintainService toolMaintainService,
             VisualizerInfoMaintainService visualizerInfoMaintainService,
-            ExecutorInfoMaintainService executorInfoMaintainService
+            ExecutorInfoMaintainService executorInfoMaintainService,
+            SessionMaintainService sessionMaintainService
     ) {
         this.userMaintainService = userMaintainService;
         this.pocaMaintainService = pocaMaintainService;
@@ -53,6 +55,7 @@ public class HandlerValidator {
         this.toolMaintainService = toolMaintainService;
         this.visualizerInfoMaintainService = visualizerInfoMaintainService;
         this.executorInfoMaintainService = executorInfoMaintainService;
+        this.sessionMaintainService = sessionMaintainService;
     }
 
     public void makeSureUserExists(StringIdKey userKey) throws HandlerException {
@@ -266,6 +269,22 @@ public class HandlerValidator {
             }
         } catch (ServiceException e) {
             throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureSessionExists(LongIdKey sessionKey) throws HandlerException {
+        try {
+            if (Objects.isNull(sessionKey) || !sessionMaintainService.exists(sessionKey)) {
+                throw new SessionNotExistsException(sessionKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureUserConsists(StringIdKey expectedUserKey, StringIdKey actualUserKey) throws HandlerException {
+        if (!Objects.equals(expectedUserKey, actualUserKey)) {
+            throw new UserNotConsistsException(expectedUserKey, actualUserKey);
         }
     }
 }

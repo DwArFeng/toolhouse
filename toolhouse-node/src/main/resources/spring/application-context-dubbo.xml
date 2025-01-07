@@ -104,6 +104,11 @@
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.SessionOperateService"
+            ref="sessionOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.VariableMaintainService"
             ref="variableMaintainServiceImpl"
             group="${dubbo.provider.group}"
