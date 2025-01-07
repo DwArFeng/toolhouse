@@ -14,6 +14,12 @@
 - 完成 node 模块，打包测试及启动测试通过。
 
 - 建立实体以及维护服务，并通过单元测试。
+  - com.dwarfeng.toolhouse.stack.bean.entity.InputItem。
+  - com.dwarfeng.toolhouse.stack.bean.entity.OutputItem。
+  - com.dwarfeng.toolhouse.stack.bean.entity.Session。
+  - com.dwarfeng.toolhouse.stack.bean.entity.Task。
+  - com.dwarfeng.toolhouse.stack.bean.entity.Variable。
+  - com.dwarfeng.toolhouse.stack.bean.entity.FileInfo。
   - com.dwarfeng.toolhouse.stack.bean.entity.ExecutorInfo。
   - com.dwarfeng.toolhouse.stack.bean.entity.ExecutorSupport。
   - com.dwarfeng.toolhouse.stack.bean.entity.VisualizerInfo。

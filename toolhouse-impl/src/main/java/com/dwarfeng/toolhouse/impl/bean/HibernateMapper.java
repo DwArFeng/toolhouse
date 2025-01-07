@@ -5,15 +5,9 @@ import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.impl.bean.entity.*;
-import com.dwarfeng.toolhouse.impl.bean.key.HibernateExecutorKey;
-import com.dwarfeng.toolhouse.impl.bean.key.HibernateFavoriteKey;
-import com.dwarfeng.toolhouse.impl.bean.key.HibernatePocaKey;
-import com.dwarfeng.toolhouse.impl.bean.key.HibernateVisualizerKey;
+import com.dwarfeng.toolhouse.impl.bean.key.*;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
-import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
-import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
-import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
-import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
+import com.dwarfeng.toolhouse.stack.bean.key.*;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -57,6 +51,16 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     ExecutorKey executorKeyFromHibernate(HibernateExecutorKey hibernateExecutorKey);
 
+    HibernateVariableKey variableKeyToHibernate(VariableKey variableKey);
+
+    @InheritInverseConfiguration
+    VariableKey variableKeyFromHibernate(HibernateVariableKey hibernateVariableKey);
+
+    HibernateTaskItemKey taskItemKeyToHibernate(TaskItemKey taskItemKey);
+
+    @InheritInverseConfiguration
+    TaskItemKey taskItemKeyFromHibernate(HibernateTaskItemKey hibernateTaskItemKey);
+
     @Mapping(target = "userStringId", ignore = true)
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "cabinetLongId", ignore = true)
@@ -87,6 +91,7 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     Folder folderFromHibernate(HibernateFolder hibernateFolder);
 
+    @Mapping(target = "sessions", ignore = true)
     @Mapping(target = "executorInfos", ignore = true)
     @Mapping(target = "visualizerInfos", ignore = true)
     @Mapping(target = "longId", ignore = true)
@@ -99,6 +104,7 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     Tool toolFromHibernate(HibernateTool hibernateTool);
 
+    @Mapping(target = "sessions", ignore = true)
     @Mapping(target = "stringId", ignore = true)
     @Mapping(target = "pocas", ignore = true)
     @Mapping(target = "favorites", ignore = true)
@@ -143,4 +149,70 @@ public interface HibernateMapper {
 
     @InheritInverseConfiguration
     ExecutorSupport executorSupportFromHibernate(HibernateExecutorSupport hibernateExecutorSupport);
+
+    @Mapping(target = "variables", ignore = true)
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "tool", ignore = true)
+    @Mapping(target = "tasks", ignore = true)
+    @Mapping(target = "longId", ignore = true)
+    @Mapping(target = "fileInfos", ignore = true)
+    HibernateSession sessionToHibernate(Session session);
+
+    @InheritInverseConfiguration
+    Session sessionFromHibernate(HibernateSession hibernateSession);
+
+    @Mapping(target = "variableStringId", ignore = true)
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "sessionLongId", ignore = true)
+    @Mapping(target = "session", ignore = true)
+    HibernateVariable variableToHibernate(Variable variable);
+
+    @InheritInverseConfiguration
+    Variable variableFromHibernate(HibernateVariable hibernateVariable);
+
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "sessionLongId", ignore = true)
+    @Mapping(target = "session", ignore = true)
+    @Mapping(target = "longId", ignore = true)
+    @Mapping(target = "inputItems", ignore = true)
+    HibernateTask taskToHibernate(Task task);
+
+    @InheritInverseConfiguration
+    Task taskFromHibernate(HibernateTask hibernateTask);
+
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "taskLongId", ignore = true)
+    @Mapping(target = "task", ignore = true)
+    @Mapping(target = "sessionLongId", ignore = true)
+    @Mapping(target = "itemStringId", ignore = true)
+    HibernateInputItem inputItemToHibernate(InputItem inputItem);
+
+    @InheritInverseConfiguration
+    InputItem inputItemFromHibernate(HibernateInputItem hibernateInputItem);
+
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "taskLongId", ignore = true)
+    @Mapping(target = "task", ignore = true)
+    @Mapping(target = "sessionLongId", ignore = true)
+    @Mapping(target = "itemStringId", ignore = true)
+    HibernateOutputItem outputItemToHibernate(OutputItem outputItem);
+
+    @InheritInverseConfiguration
+    OutputItem outputItemFromHibernate(HibernateOutputItem hibernateOutputItem);
+
+    @Mapping(target = "userStringId", ignore = true)
+    @Mapping(target = "toolLongId", ignore = true)
+    @Mapping(target = "sessionLongId", ignore = true)
+    @Mapping(target = "session", ignore = true)
+    @Mapping(target = "longId", ignore = true)
+    HibernateFileInfo fileInfoToHibernate(FileInfo fileInfo);
+
+    @InheritInverseConfiguration
+    FileInfo fileInfoFromHibernate(HibernateFileInfo hibernateFileInfo);
 }

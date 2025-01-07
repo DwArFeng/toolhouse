@@ -14,8 +14,8 @@ import java.util.Set;
 @Table(name = "tbl_user")
 public class HibernateUser implements Bean {
 
-    private static final long serialVersionUID = -960909123603172018L;
-
+    private static final long serialVersionUID = -3162510786322649799L;
+    
     // -----------------------------------------------------------主键-----------------------------------------------------------
     @Id
     @Column(name = "id", nullable = false, unique = true, length = Constraints.LENGTH_USER)
@@ -31,6 +31,9 @@ public class HibernateUser implements Bean {
 
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateFavorite.class, mappedBy = "user")
     private Set<HibernateFavorite> favorites = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateSession.class, mappedBy = "user")
+    private Set<HibernateSession> sessions = new HashSet<>();
 
     public HibernateUser() {
     }
@@ -75,6 +78,14 @@ public class HibernateUser implements Bean {
 
     public void setFavorites(Set<HibernateFavorite> favorites) {
         this.favorites = favorites;
+    }
+
+    public Set<HibernateSession> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(Set<HibernateSession> sessions) {
+        this.sessions = sessions;
     }
 
     @Override

@@ -5,15 +5,9 @@ import com.dwarfeng.subgrade.sdk.bean.key.FastJsonStringIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.sdk.bean.entity.*;
-import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonExecutorKey;
-import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonFavoriteKey;
-import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonPocaKey;
-import com.dwarfeng.toolhouse.sdk.bean.key.FastJsonVisualizerKey;
+import com.dwarfeng.toolhouse.sdk.bean.key.*;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
-import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
-import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
-import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
-import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
+import com.dwarfeng.toolhouse.stack.bean.key.*;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
@@ -55,6 +49,16 @@ public interface FastJsonMapper {
 
     @InheritInverseConfiguration
     ExecutorKey executorKeyFromFastJson(FastJsonExecutorKey fastJsonExecutorKey);
+
+    FastJsonVariableKey variableKeyToFastJson(VariableKey variableKey);
+
+    @InheritInverseConfiguration
+    VariableKey variableKeyFromFastJson(FastJsonVariableKey fastJsonVariableKey);
+
+    FastJsonTaskItemKey taskItemKeyToFastJson(TaskItemKey taskItemKey);
+
+    @InheritInverseConfiguration
+    TaskItemKey taskItemKeyFromFastJson(FastJsonTaskItemKey fastJsonTaskItemKey);
 
     FastJsonPoca pocaToFastJson(Poca poca);
 
@@ -105,4 +109,34 @@ public interface FastJsonMapper {
 
     @InheritInverseConfiguration
     ExecutorSupport executorSupportFromFastJson(FastJsonExecutorSupport fastJsonExecutorSupport);
+
+    FastJsonSession sessionToFastJson(Session session);
+
+    @InheritInverseConfiguration
+    Session sessionFromFastJson(FastJsonSession fastJsonSession);
+
+    FastJsonVariable variableToFastJson(Variable variable);
+
+    @InheritInverseConfiguration
+    Variable variableFromFastJson(FastJsonVariable fastJsonVariable);
+
+    FastJsonTask taskToFastJson(Task task);
+
+    @InheritInverseConfiguration
+    Task taskFromFastJson(FastJsonTask fastJsonTask);
+
+    FastJsonInputItem inputItemToFastJson(InputItem inputItem);
+
+    @InheritInverseConfiguration
+    InputItem inputItemFromFastJson(FastJsonInputItem fastJsonInputItem);
+
+    FastJsonOutputItem outputItemToFastJson(OutputItem outputItem);
+
+    @InheritInverseConfiguration
+    OutputItem outputItemFromFastJson(FastJsonOutputItem fastJsonOutputItem);
+
+    FastJsonFileInfo fileInfoToFastJson(FileInfo fileInfo);
+
+    @InheritInverseConfiguration
+    FileInfo fileInfoFromFastJson(FastJsonFileInfo fastJsonFileInfo);
 }

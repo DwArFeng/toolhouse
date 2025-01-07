@@ -8,15 +8,9 @@ import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.toolhouse.sdk.bean.FastJsonMapper;
 import com.dwarfeng.toolhouse.sdk.bean.entity.*;
-import com.dwarfeng.toolhouse.sdk.bean.key.formatter.ExecutorStringKeyFormatter;
-import com.dwarfeng.toolhouse.sdk.bean.key.formatter.FavoriteStringKeyFormatter;
-import com.dwarfeng.toolhouse.sdk.bean.key.formatter.PocaStringKeyFormatter;
-import com.dwarfeng.toolhouse.sdk.bean.key.formatter.VisualizerStringKeyFormatter;
+import com.dwarfeng.toolhouse.sdk.bean.key.formatter.*;
 import com.dwarfeng.toolhouse.stack.bean.entity.*;
-import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
-import com.dwarfeng.toolhouse.stack.bean.key.FavoriteKey;
-import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
-import com.dwarfeng.toolhouse.stack.bean.key.VisualizerKey;
+import com.dwarfeng.toolhouse.stack.bean.key.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +41,18 @@ public class CacheConfiguration {
     private String executorInfoPrefix;
     @Value("${cache.prefix.entity.executor_support}")
     private String executorSupportPrefix;
-
+    @Value("${cache.prefix.entity.session}")
+    private String sessionPrefix;
+    @Value("${cache.prefix.entity.variable}")
+    private String variablePrefix;
+    @Value("${cache.prefix.entity.task}")
+    private String taskPrefix;
+    @Value("${cache.prefix.entity.input_item}")
+    private String inputItemPrefix;
+    @Value("${cache.prefix.entity.output_item}")
+    private String outputItemPrefix;
+    @Value("${cache.prefix.entity.file_info}")
+    private String fileInfoPrefix;
 
     public CacheConfiguration(RedisTemplate<String, ?> template) {
         this.template = template;
@@ -157,6 +162,66 @@ public class CacheConfiguration {
                 new MapStructBeanTransformer<>(
                         ExecutorSupport.class, FastJsonExecutorSupport.class, FastJsonMapper.class
                 )
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, Session, FastJsonSession> sessionRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonSession>) template,
+                new LongIdStringKeyFormatter(sessionPrefix),
+                new MapStructBeanTransformer<>(Session.class, FastJsonSession.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<VariableKey, Variable, FastJsonVariable> variableRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonVariable>) template,
+                new VariableStringKeyFormatter(variablePrefix),
+                new MapStructBeanTransformer<>(Variable.class, FastJsonVariable.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, Task, FastJsonTask> taskRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonTask>) template,
+                new LongIdStringKeyFormatter(taskPrefix),
+                new MapStructBeanTransformer<>(Task.class, FastJsonTask.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<TaskItemKey, InputItem, FastJsonInputItem> inputItemRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonInputItem>) template,
+                new TaskItemStringKeyFormatter(inputItemPrefix),
+                new MapStructBeanTransformer<>(InputItem.class, FastJsonInputItem.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<TaskItemKey, OutputItem, FastJsonOutputItem> outputItemRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonOutputItem>) template,
+                new TaskItemStringKeyFormatter(outputItemPrefix),
+                new MapStructBeanTransformer<>(OutputItem.class, FastJsonOutputItem.class, FastJsonMapper.class)
+        );
+    }
+
+    @Bean
+    @SuppressWarnings("unchecked")
+    public RedisBatchBaseCache<LongIdKey, FileInfo, FastJsonFileInfo> fileInfoRedisBatchBaseCache() {
+        return new RedisBatchBaseCache<>(
+                (RedisTemplate<String, FastJsonFileInfo>) template,
+                new LongIdStringKeyFormatter(fileInfoPrefix),
+                new MapStructBeanTransformer<>(FileInfo.class, FastJsonFileInfo.class, FastJsonMapper.class)
         );
     }
 }

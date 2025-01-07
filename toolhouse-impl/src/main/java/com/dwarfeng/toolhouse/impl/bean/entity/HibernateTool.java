@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name = "tbl_tool")
 public class HibernateTool implements Bean {
 
-    private static final long serialVersionUID = -7115117511972316568L;
+    private static final long serialVersionUID = -4596376197530266451L;
     
     // -----------------------------------------------------------主键-----------------------------------------------------------
     @Id
@@ -59,6 +59,9 @@ public class HibernateTool implements Bean {
 
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateExecutorInfo.class, mappedBy = "tool")
     private Set<HibernateExecutorInfo> executorInfos = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateSession.class, mappedBy = "tool")
+    private Set<HibernateSession> sessions = new HashSet<>();
 
     public HibernateTool() {
     }
@@ -167,6 +170,14 @@ public class HibernateTool implements Bean {
 
     public void setExecutorInfos(Set<HibernateExecutorInfo> executorInfos) {
         this.executorInfos = executorInfos;
+    }
+
+    public Set<HibernateSession> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(Set<HibernateSession> sessions) {
+        this.sessions = sessions;
     }
 
     @Override

@@ -26,10 +26,52 @@ public final class Constants {
 
     public static final int IO_TRANS_BUFFER_SIZE = 4096;
 
+    @TaskStatusItem
+    public static final int TASK_STATUS_CREATED = 0;
+    @TaskStatusItem
+    public static final int TASK_STATUS_PROCESSING = 1;
+    @TaskStatusItem
+    public static final int TASK_STATUS_FINISHED = 2;
+    @TaskStatusItem
+    public static final int TASK_STATUS_FAILED = 3;
+    @TaskStatusItem
+    public static final int TASK_STATUS_EXPIRED = 4;
+    @TaskStatusItem
+    public static final int TASK_STATUS_DIED = 5;
+
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_STRING = 0;
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_LONG = 1;
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_DOUBLE = 2;
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_BOOLEAN = 3;
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_DATE = 4;
+    @VariableTypeItem
+    public static final int VARIABLE_TYPE_FILE = 5;
+
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_STRING = 0;
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_LONG = 1;
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_DOUBLE = 2;
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_BOOLEAN = 3;
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_DATE = 4;
+    @TaskItemTypeItem
+    public static final int TASK_ITEM_TYPE_FILE = 5;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Constants.class);
     private static final Lock LOCK = new ReentrantLock();
 
     private static List<Integer> permissionLevelSpace = null;
+    private static List<Integer> taskStatusSpace = null;
+    private static List<Integer> variableTypeSpace = null;
+    private static List<Integer> taskItemTypeSpace = null;
 
     /**
      * 获取权限等级的空间。
@@ -71,6 +113,132 @@ public final class Constants {
         }
 
         permissionLevelSpace = Collections.unmodifiableList(result);
+    }
+
+    /**
+     * 任务状态空间。
+     *
+     * @return 任务状态空间。
+     */
+    public static List<Integer> taskStatusSpace() {
+        if (Objects.nonNull(taskStatusSpace)) {
+            return taskStatusSpace;
+        }
+        // 基于线程安全的懒加载初始化结果列表。
+        LOCK.lock();
+        try {
+            if (Objects.nonNull(taskStatusSpace)) {
+                return taskStatusSpace;
+            }
+            initTaskStatusSpace();
+            return taskStatusSpace;
+        } finally {
+            LOCK.unlock();
+        }
+    }
+
+    private static void initTaskStatusSpace() {
+        List<Integer> result = new ArrayList<>();
+
+        Field[] declaredFields = Constants.class.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (!declaredField.isAnnotationPresent(TaskStatusItem.class)) {
+                continue;
+            }
+            Integer value;
+            try {
+                value = (Integer) declaredField.get(null);
+                result.add(value);
+            } catch (Exception e) {
+                LOGGER.error("初始化异常, 请检查代码, 信息如下: ", e);
+            }
+        }
+
+        taskStatusSpace = Collections.unmodifiableList(result);
+    }
+
+    /**
+     * 变量类型空间。
+     *
+     * @return 变量类型空间。
+     */
+    public static List<Integer> variableTypeSpace() {
+        if (Objects.nonNull(variableTypeSpace)) {
+            return variableTypeSpace;
+        }
+        // 基于线程安全的懒加载初始化结果列表。
+        LOCK.lock();
+        try {
+            if (Objects.nonNull(variableTypeSpace)) {
+                return variableTypeSpace;
+            }
+            initVariableTypeSpace();
+            return variableTypeSpace;
+        } finally {
+            LOCK.unlock();
+        }
+    }
+
+    private static void initVariableTypeSpace() {
+        List<Integer> result = new ArrayList<>();
+
+        Field[] declaredFields = Constants.class.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (!declaredField.isAnnotationPresent(VariableTypeItem.class)) {
+                continue;
+            }
+            Integer value;
+            try {
+                value = (Integer) declaredField.get(null);
+                result.add(value);
+            } catch (Exception e) {
+                LOGGER.error("初始化异常, 请检查代码, 信息如下: ", e);
+            }
+        }
+
+        variableTypeSpace = Collections.unmodifiableList(result);
+    }
+
+    /**
+     * 任务项类型空间。
+     *
+     * @return 任务项类型空间。
+     */
+    public static List<Integer> taskItemTypeSpace() {
+        if (Objects.nonNull(taskItemTypeSpace)) {
+            return taskItemTypeSpace;
+        }
+        // 基于线程安全的懒加载初始化结果列表。
+        LOCK.lock();
+        try {
+            if (Objects.nonNull(taskItemTypeSpace)) {
+                return taskItemTypeSpace;
+            }
+            initTaskItemTypeSpace();
+            return taskItemTypeSpace;
+        } finally {
+            LOCK.unlock();
+        }
+    }
+
+    private static void initTaskItemTypeSpace() {
+        List<Integer> result = new ArrayList<>();
+
+        Field[] declaredFields = Constants.class.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (!declaredField.isAnnotationPresent(TaskItemTypeItem.class)) {
+                continue;
+            }
+            Integer value;
+            try {
+                value = (Integer) declaredField.get(null);
+                result.add(value);
+            } catch (Exception e) {
+                LOGGER.error("初始化异常, 请检查代码, 信息如下: ", e);
+            }
+        }
+
+        taskItemTypeSpace = Collections.unmodifiableList(result);
     }
 
     private Constants() {
