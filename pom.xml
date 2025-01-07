@@ -51,6 +51,7 @@
         <dutil.version>beta-0.3.2.a</dutil.version>
         <snowflake.version>1.5.3.a</snowflake.version>
         <subgrade.version>1.5.7.a</subgrade.version>
+        <dwarfeng-ftp.version>1.2.2.a</dwarfeng-ftp.version>
         <spring-terminator.version>1.0.14.a</spring-terminator.version>
         <spring-telqos.version>1.1.11.b</spring-telqos.version>
         <!-- Maven 插件版本声明 -->
@@ -382,6 +383,12 @@
                         <groupId>org.mybatis</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <!-- Dwarfeng-ftp 组件 -->
+            <dependency>
+                <groupId>com.dwarfeng</groupId>
+                <artifactId>dwarfeng-ftp</artifactId>
+                <version>${dwarfeng-ftp.version}</version>
             </dependency>
             <!-- Spring-terminator 组件 -->
             <dependency>

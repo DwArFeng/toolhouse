@@ -24,6 +24,8 @@ public final class Constants {
     @PermissionLevelItem
     public static final int PERMISSION_LEVEL_GUEST = 1;
 
+    public static final int IO_TRANS_BUFFER_SIZE = 4096;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Constants.class);
     private static final Lock LOCK = new ReentrantLock();
 
