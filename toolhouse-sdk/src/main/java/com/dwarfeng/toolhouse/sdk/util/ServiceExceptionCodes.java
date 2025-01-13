@@ -38,6 +38,8 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(110), "session not exists");
     public static final ServiceException.Code USER_NOT_CONSISTS =
             new ServiceException.Code(offset(120), "user not consists");
+    public static final ServiceException.Code FILE_INFO_NOT_EXISTS =
+            new ServiceException.Code(offset(130), "file info not exists");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -75,6 +77,7 @@ public final class ServiceExceptionCodes {
         EXECUTOR_INFO_NOT_EXISTS.setCode(offset(100));
         SESSION_NOT_EXISTS.setCode(offset(110));
         USER_NOT_CONSISTS.setCode(offset(120));
+        FILE_INFO_NOT_EXISTS.setCode(offset(130));
     }
 
     private ServiceExceptionCodes() {

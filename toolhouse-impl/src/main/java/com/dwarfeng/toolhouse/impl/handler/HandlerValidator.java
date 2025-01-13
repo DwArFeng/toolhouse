@@ -37,6 +37,7 @@ public class HandlerValidator {
     private final VisualizerInfoMaintainService visualizerInfoMaintainService;
     private final ExecutorInfoMaintainService executorInfoMaintainService;
     private final SessionMaintainService sessionMaintainService;
+    private final FileInfoMaintainService fileInfoMaintainService;
 
     public HandlerValidator(
             UserMaintainService userMaintainService,
@@ -46,7 +47,8 @@ public class HandlerValidator {
             ToolMaintainService toolMaintainService,
             VisualizerInfoMaintainService visualizerInfoMaintainService,
             ExecutorInfoMaintainService executorInfoMaintainService,
-            SessionMaintainService sessionMaintainService
+            SessionMaintainService sessionMaintainService,
+            FileInfoMaintainService fileInfoMaintainService
     ) {
         this.userMaintainService = userMaintainService;
         this.pocaMaintainService = pocaMaintainService;
@@ -56,6 +58,7 @@ public class HandlerValidator {
         this.visualizerInfoMaintainService = visualizerInfoMaintainService;
         this.executorInfoMaintainService = executorInfoMaintainService;
         this.sessionMaintainService = sessionMaintainService;
+        this.fileInfoMaintainService = fileInfoMaintainService;
     }
 
     public void makeSureUserExists(StringIdKey userKey) throws HandlerException {
@@ -285,6 +288,16 @@ public class HandlerValidator {
     public void makeSureUserConsists(StringIdKey expectedUserKey, StringIdKey actualUserKey) throws HandlerException {
         if (!Objects.equals(expectedUserKey, actualUserKey)) {
             throw new UserNotConsistsException(expectedUserKey, actualUserKey);
+        }
+    }
+
+    public void makeSureFileInfoExists(LongIdKey fileInfoKey) throws HandlerException {
+        try {
+            if (Objects.isNull(fileInfoKey) || !fileInfoMaintainService.exists(fileInfoKey)) {
+                throw new FileInfoNotExistsException(fileInfoKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
         }
     }
 }
