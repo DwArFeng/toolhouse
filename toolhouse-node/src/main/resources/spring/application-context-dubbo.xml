@@ -119,6 +119,11 @@
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.VariableOperateService"
+            ref="variableOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.TaskMaintainService"
             ref="taskMaintainServiceImpl"
             group="${dubbo.provider.group}"

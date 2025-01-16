@@ -300,4 +300,11 @@ public class HandlerValidator {
             throw new HandlerException(e);
         }
     }
+
+    public void makeSureVariableTypeValid(int type) throws HandlerException {
+        if (Constants.variableTypeSpace().contains(type)) {
+            return;
+        }
+        throw new InvalidVariableTypeException(type);
+    }
 }

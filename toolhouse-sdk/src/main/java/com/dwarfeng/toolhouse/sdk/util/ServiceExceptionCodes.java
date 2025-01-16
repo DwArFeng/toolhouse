@@ -40,6 +40,8 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(120), "user not consists");
     public static final ServiceException.Code FILE_INFO_NOT_EXISTS =
             new ServiceException.Code(offset(130), "file info not exists");
+    public static final ServiceException.Code INVALID_VARIABLE_TYPE =
+            new ServiceException.Code(offset(140), "invalid variable type");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -78,6 +80,7 @@ public final class ServiceExceptionCodes {
         SESSION_NOT_EXISTS.setCode(offset(110));
         USER_NOT_CONSISTS.setCode(offset(120));
         FILE_INFO_NOT_EXISTS.setCode(offset(130));
+        INVALID_VARIABLE_TYPE.setCode(offset(140));
     }
 
     private ServiceExceptionCodes() {
