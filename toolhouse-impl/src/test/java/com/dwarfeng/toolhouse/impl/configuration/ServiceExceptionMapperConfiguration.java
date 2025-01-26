@@ -31,6 +31,8 @@ public class ServiceExceptionMapperConfiguration {
         destination.put(UserNotConsistsException.class, ServiceExceptionCodes.USER_NOT_CONSISTS);
         destination.put(FileInfoNotExistsException.class, ServiceExceptionCodes.FILE_INFO_NOT_EXISTS);
         destination.put(InvalidVariableTypeException.class, ServiceExceptionCodes.INVALID_VARIABLE_TYPE);
+        destination.put(TaskNotExistsException.class, ServiceExceptionCodes.TASK_NOT_EXISTS);
+        destination.put(TaskStatusMismatchException.class, ServiceExceptionCodes.TASK_STATUS_MISMATCH);
         return new MapServiceExceptionMapper(destination, com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.UNDEFINED);
     }
 }

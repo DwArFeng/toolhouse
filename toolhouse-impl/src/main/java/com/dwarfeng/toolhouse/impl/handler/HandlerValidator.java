@@ -7,6 +7,7 @@ import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.toolhouse.sdk.util.Constants;
 import com.dwarfeng.toolhouse.stack.bean.entity.Folder;
 import com.dwarfeng.toolhouse.stack.bean.entity.Poca;
+import com.dwarfeng.toolhouse.stack.bean.entity.Task;
 import com.dwarfeng.toolhouse.stack.bean.entity.Tool;
 import com.dwarfeng.toolhouse.stack.bean.key.ExecutorKey;
 import com.dwarfeng.toolhouse.stack.bean.key.PocaKey;
@@ -16,6 +17,7 @@ import com.dwarfeng.toolhouse.stack.service.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * 操作处理器验证器。
@@ -38,6 +40,7 @@ public class HandlerValidator {
     private final ExecutorInfoMaintainService executorInfoMaintainService;
     private final SessionMaintainService sessionMaintainService;
     private final FileInfoMaintainService fileInfoMaintainService;
+    private final TaskMaintainService taskMaintainService;
 
     public HandlerValidator(
             UserMaintainService userMaintainService,
@@ -48,7 +51,8 @@ public class HandlerValidator {
             VisualizerInfoMaintainService visualizerInfoMaintainService,
             ExecutorInfoMaintainService executorInfoMaintainService,
             SessionMaintainService sessionMaintainService,
-            FileInfoMaintainService fileInfoMaintainService
+            FileInfoMaintainService fileInfoMaintainService,
+            TaskMaintainService taskMaintainService
     ) {
         this.userMaintainService = userMaintainService;
         this.pocaMaintainService = pocaMaintainService;
@@ -59,6 +63,7 @@ public class HandlerValidator {
         this.executorInfoMaintainService = executorInfoMaintainService;
         this.sessionMaintainService = sessionMaintainService;
         this.fileInfoMaintainService = fileInfoMaintainService;
+        this.taskMaintainService = taskMaintainService;
     }
 
     public void makeSureUserExists(StringIdKey userKey) throws HandlerException {
@@ -306,5 +311,34 @@ public class HandlerValidator {
             return;
         }
         throw new InvalidVariableTypeException(type);
+    }
+
+    public void makeSureTaskExists(LongIdKey taskKey) throws HandlerException {
+        try {
+            if (Objects.isNull(taskKey) || !taskMaintainService.exists(taskKey)) {
+                throw new TaskNotExistsException(taskKey);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
+    }
+
+    public void makeSureTaskStatusValid(LongIdKey taskKey, Set<Integer> validStatusSet)
+            throws HandlerException {
+        try {
+            Task task = taskMaintainService.getIfExists(taskKey);
+            if (Objects.isNull(task)) {
+                throw new TaskNotExistsException(taskKey);
+            }
+            int status = task.getStatus();
+            if (!Constants.taskStatusSpace().contains(status)) {
+                throw new TaskStatusMismatchException(validStatusSet, status);
+            }
+            if (!validStatusSet.contains(status)) {
+                throw new TaskStatusMismatchException(validStatusSet, status);
+            }
+        } catch (ServiceException e) {
+            throw new HandlerException(e);
+        }
     }
 }

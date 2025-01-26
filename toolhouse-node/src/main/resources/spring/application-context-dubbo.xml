@@ -129,6 +129,11 @@
             group="${dubbo.provider.group}"
     />
     <dubbo:service
+            interface="com.dwarfeng.toolhouse.stack.service.TaskOperateService"
+            ref="taskOperateServiceImpl"
+            group="${dubbo.provider.group}"
+    />
+    <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.InputItemMaintainService"
             ref="inputItemMaintainServiceImpl"
             group="${dubbo.provider.group}"

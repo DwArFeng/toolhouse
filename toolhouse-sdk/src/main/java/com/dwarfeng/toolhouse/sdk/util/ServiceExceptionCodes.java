@@ -42,6 +42,10 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(130), "file info not exists");
     public static final ServiceException.Code INVALID_VARIABLE_TYPE =
             new ServiceException.Code(offset(140), "invalid variable type");
+    public static final ServiceException.Code TASK_NOT_EXISTS =
+            new ServiceException.Code(offset(150), "task not exists");
+    public static final ServiceException.Code TASK_STATUS_MISMATCH =
+            new ServiceException.Code(offset(160), "task status mismatch");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -81,6 +85,8 @@ public final class ServiceExceptionCodes {
         USER_NOT_CONSISTS.setCode(offset(120));
         FILE_INFO_NOT_EXISTS.setCode(offset(130));
         INVALID_VARIABLE_TYPE.setCode(offset(140));
+        TASK_NOT_EXISTS.setCode(offset(150));
+        TASK_STATUS_MISMATCH.setCode(offset(160));
     }
 
     private ServiceExceptionCodes() {
