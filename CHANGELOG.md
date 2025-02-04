@@ -5,6 +5,8 @@
 #### 功能构建
 
 - 增加操作服务。
+  - com.dwarfeng.toolhouse.stack.service.InputItemOperateService。
+  - com.dwarfeng.toolhouse.stack.service.OutputItemOperateService。
   - com.dwarfeng.toolhouse.stack.service.TaskOperateService。
   - com.dwarfeng.toolhouse.stack.service.VariableOperateService。
   - com.dwarfeng.toolhouse.stack.service.FileOperateService。

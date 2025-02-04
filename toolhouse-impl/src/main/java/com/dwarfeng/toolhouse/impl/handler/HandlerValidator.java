@@ -341,4 +341,11 @@ public class HandlerValidator {
             throw new HandlerException(e);
         }
     }
+
+    public void makeSureTaskItemTypeValid(int type) throws HandlerException {
+        if (Constants.taskItemTypeSpace().contains(type)) {
+            return;
+        }
+        throw new InvalidTaskItemTypeException(type);
+    }
 }

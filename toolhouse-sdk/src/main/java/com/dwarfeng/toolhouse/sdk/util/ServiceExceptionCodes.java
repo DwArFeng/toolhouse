@@ -46,6 +46,8 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(150), "task not exists");
     public static final ServiceException.Code TASK_STATUS_MISMATCH =
             new ServiceException.Code(offset(160), "task status mismatch");
+    public static final ServiceException.Code INVALID_TASK_ITEM_TYPE =
+            new ServiceException.Code(offset(170), "invalid task item type");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -87,6 +89,7 @@ public final class ServiceExceptionCodes {
         INVALID_VARIABLE_TYPE.setCode(offset(140));
         TASK_NOT_EXISTS.setCode(offset(150));
         TASK_STATUS_MISMATCH.setCode(offset(160));
+        INVALID_TASK_ITEM_TYPE.setCode(offset(170));
     }
 
     private ServiceExceptionCodes() {

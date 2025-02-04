@@ -33,6 +33,7 @@ public class ServiceExceptionMapperConfiguration {
         destination.put(InvalidVariableTypeException.class, ServiceExceptionCodes.INVALID_VARIABLE_TYPE);
         destination.put(TaskNotExistsException.class, ServiceExceptionCodes.TASK_NOT_EXISTS);
         destination.put(TaskStatusMismatchException.class, ServiceExceptionCodes.TASK_STATUS_MISMATCH);
+        destination.put(InvalidTaskItemTypeException.class, ServiceExceptionCodes.INVALID_TASK_ITEM_TYPE);
         return new MapServiceExceptionMapper(destination, com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.UNDEFINED);
     }
 }
