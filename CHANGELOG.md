@@ -4,6 +4,13 @@
 
 #### 功能构建
 
+- 实现预设执行器。
+  - com.dwarfeng.toolhouse.impl.handler.executor.mock.MockExecutorRegistry。
+  - com.dwarfeng.toolhouse.impl.handler.executor.groovy.GroovyExecutorRegistry。
+
+- 实现核心机制。
+  - 执行机制。
+
 - 增加操作服务。
   - com.dwarfeng.toolhouse.stack.service.InputItemOperateService。
   - com.dwarfeng.toolhouse.stack.service.OutputItemOperateService。

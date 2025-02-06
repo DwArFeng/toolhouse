@@ -48,6 +48,14 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(160), "task status mismatch");
     public static final ServiceException.Code INVALID_TASK_ITEM_TYPE =
             new ServiceException.Code(offset(170), "invalid task item type");
+    public static final ServiceException.Code EXECUTOR_FAILED =
+            new ServiceException.Code(offset(180), "executor failed");
+    public static final ServiceException.Code EXECUTOR_MAKE_FAILED =
+            new ServiceException.Code(offset(181), "executor make failed");
+    public static final ServiceException.Code EXECUTOR_EXECUTION_FAILED =
+            new ServiceException.Code(offset(182), "executor execution failed");
+    public static final ServiceException.Code EXECUTOR_TYPE_UNSUPPORTED =
+            new ServiceException.Code(offset(183), "executor type unsupported");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -90,6 +98,10 @@ public final class ServiceExceptionCodes {
         TASK_NOT_EXISTS.setCode(offset(150));
         TASK_STATUS_MISMATCH.setCode(offset(160));
         INVALID_TASK_ITEM_TYPE.setCode(offset(170));
+        EXECUTOR_FAILED.setCode(offset(180));
+        EXECUTOR_MAKE_FAILED.setCode(offset(181));
+        EXECUTOR_EXECUTION_FAILED.setCode(offset(182));
+        EXECUTOR_TYPE_UNSUPPORTED.setCode(offset(183));
     }
 
     private ServiceExceptionCodes() {
