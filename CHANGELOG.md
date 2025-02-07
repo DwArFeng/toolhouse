@@ -4,6 +4,10 @@
 
 #### 功能构建
 
+- 实现运维指令。
+  - com.dwarfeng.toolhouse.impl.service.telqos.ExecuteCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.ExecuteLocalCacheCommand。
+
 - 实现预设执行器。
   - com.dwarfeng.toolhouse.impl.handler.executor.mock.MockExecutorRegistry。
   - com.dwarfeng.toolhouse.impl.handler.executor.groovy.GroovyExecutorRegistry。
