@@ -5,6 +5,7 @@
 #### 功能构建
 
 - 实现运维指令。
+  - com.dwarfeng.toolhouse.impl.service.telqos.VariableCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.FileCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.TaskCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.SessionCommand。
