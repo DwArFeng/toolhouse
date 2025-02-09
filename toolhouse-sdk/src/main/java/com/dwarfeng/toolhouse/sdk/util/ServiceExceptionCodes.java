@@ -56,6 +56,12 @@ public final class ServiceExceptionCodes {
             new ServiceException.Code(offset(182), "executor execution failed");
     public static final ServiceException.Code EXECUTOR_TYPE_UNSUPPORTED =
             new ServiceException.Code(offset(183), "executor type unsupported");
+    public static final ServiceException.Code VISUALIZER_FAILED =
+            new ServiceException.Code(offset(190), "visualizer failed");
+    public static final ServiceException.Code VISUALIZER_EXECUTION_FAILED =
+            new ServiceException.Code(offset(192), "visualizer execution failed");
+    public static final ServiceException.Code VISUALIZER_TYPE_UNSUPPORTED =
+            new ServiceException.Code(offset(193), "visualizer type unsupported");
 
     private static int offset(int i) {
         return EXCEPTION_CODE_OFFSET + i;
@@ -102,6 +108,9 @@ public final class ServiceExceptionCodes {
         EXECUTOR_MAKE_FAILED.setCode(offset(181));
         EXECUTOR_EXECUTION_FAILED.setCode(offset(182));
         EXECUTOR_TYPE_UNSUPPORTED.setCode(offset(183));
+        VISUALIZER_FAILED.setCode(offset(190));
+        VISUALIZER_EXECUTION_FAILED.setCode(offset(192));
+        VISUALIZER_TYPE_UNSUPPORTED.setCode(offset(193));
     }
 
     private ServiceExceptionCodes() {

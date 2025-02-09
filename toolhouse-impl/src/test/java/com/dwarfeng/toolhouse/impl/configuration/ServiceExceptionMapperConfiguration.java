@@ -38,6 +38,9 @@ public class ServiceExceptionMapperConfiguration {
         destination.put(ExecutorMakeException.class, ServiceExceptionCodes.EXECUTOR_MAKE_FAILED);
         destination.put(ExecutorExecutionException.class, ServiceExceptionCodes.EXECUTOR_EXECUTION_FAILED);
         destination.put(UnsupportedExecutorTypeException.class, ServiceExceptionCodes.EXECUTOR_TYPE_UNSUPPORTED);
+        destination.put(VisualizerException.class, ServiceExceptionCodes.VISUALIZER_FAILED);
+        destination.put(VisualizerExecutionException.class, ServiceExceptionCodes.VISUALIZER_EXECUTION_FAILED);
+        destination.put(UnsupportedVisualizerTypeException.class, ServiceExceptionCodes.VISUALIZER_TYPE_UNSUPPORTED);
         return new MapServiceExceptionMapper(destination, com.dwarfeng.subgrade.sdk.exception.ServiceExceptionCodes.UNDEFINED);
     }
 }
