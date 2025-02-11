@@ -5,6 +5,7 @@
 #### 功能构建
 
 - 实现运维指令。
+  - com.dwarfeng.toolhouse.impl.service.telqos.VisualizerCacheCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.InputItemCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.OutputItemCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.VariableCommand。
