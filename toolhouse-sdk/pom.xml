@@ -10,7 +10,7 @@
     <parent>
         <artifactId>toolhouse</artifactId>
         <groupId>com.dwarfeng</groupId>
-        <version>beta-1.0.0.a-SNAPSHOT</version>
+        <version>beta-1.0.0.a</version>
     </parent>
 
     <artifactId>toolhouse-sdk</artifactId>
