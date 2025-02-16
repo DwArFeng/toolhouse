@@ -112,6 +112,7 @@ public class SessionOperateHandlerImpl implements SessionOperateHandler {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void overrideRemove(StringIdKey operateUserKey, SessionOverrideRemoveInfo info) throws HandlerException {
         try {

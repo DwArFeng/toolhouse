@@ -20,6 +20,8 @@ import java.util.Objects;
  */
 public class WebInputOutputItemSystemRemoveInfo implements Dto {
 
+    private static final long serialVersionUID = -4151140262550551276L;
+
     public static OutputItemSystemRemoveInfo toStackBean(WebInputOutputItemSystemRemoveInfo webInput) {
         if (Objects.isNull(webInput)) {
             return null;

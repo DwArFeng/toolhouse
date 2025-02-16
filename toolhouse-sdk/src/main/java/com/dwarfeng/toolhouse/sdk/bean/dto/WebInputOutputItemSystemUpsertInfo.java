@@ -22,6 +22,8 @@ import java.util.Objects;
  */
 public class WebInputOutputItemSystemUpsertInfo implements Dto {
 
+    private static final long serialVersionUID = 4693606815903420266L;
+
     public static OutputItemSystemUpsertInfo toStackBean(WebInputOutputItemSystemUpsertInfo webInput) {
         if (Objects.isNull(webInput)) {
             return null;

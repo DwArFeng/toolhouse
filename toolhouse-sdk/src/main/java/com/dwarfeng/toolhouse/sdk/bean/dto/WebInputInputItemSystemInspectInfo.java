@@ -20,6 +20,8 @@ import java.util.Objects;
  */
 public class WebInputInputItemSystemInspectInfo implements Dto {
 
+    private static final long serialVersionUID = 8151325930910375162L;
+
     public static InputItemSystemInspectInfo toStackBean(WebInputInputItemSystemInspectInfo webInput) {
         if (Objects.isNull(webInput)) {
             return null;
