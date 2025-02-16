@@ -20,6 +20,7 @@
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.toolhouse\.impl\.handler\.executor\..*$"/>
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.toolhouse\.impl\.handler\.visualizer\..*$"/>
         <context:exclude-filter type="regex" expression="^com\.dwarfeng\.toolhouse\.impl\.handler\.resetter\..*$"/>
+        <context:exclude-filter type="regex" expression="^com\.dwarfeng\.toolhouse\.impl\.handler\.pusher\..*$"/>
     </context:component-scan>
     <!--扫描配置类所在的包。 -->
     <context:component-scan base-package="com.dwarfeng.toolhouse.node.configuration"/>

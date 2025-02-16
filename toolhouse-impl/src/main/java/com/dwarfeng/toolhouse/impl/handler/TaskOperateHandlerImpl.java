@@ -9,9 +9,12 @@ import com.dwarfeng.toolhouse.sdk.util.Constants;
 import com.dwarfeng.toolhouse.stack.bean.dto.*;
 import com.dwarfeng.toolhouse.stack.bean.entity.Session;
 import com.dwarfeng.toolhouse.stack.bean.entity.Task;
+import com.dwarfeng.toolhouse.stack.handler.PushHandler;
 import com.dwarfeng.toolhouse.stack.handler.TaskOperateHandler;
 import com.dwarfeng.toolhouse.stack.service.SessionMaintainService;
 import com.dwarfeng.toolhouse.stack.service.TaskMaintainService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,8 @@ import java.util.Set;
 
 @Component
 public class TaskOperateHandlerImpl implements TaskOperateHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TaskOperateHandlerImpl.class);
 
     private static final Set<Integer> VALID_TASK_STATUS_SET_START;
     private static final Set<Integer> VALID_TASK_STATUS_SET_FINISH;
@@ -67,6 +72,8 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
     private final TaskMaintainService taskMaintainService;
     private final SessionMaintainService sessionMaintainService;
 
+    private final PushHandler pushHandler;
+
     private final KeyGenerator<LongIdKey> keyGenerator;
 
     private final HandlerValidator handlerValidator;
@@ -79,11 +86,13 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
     public TaskOperateHandlerImpl(
             TaskMaintainService taskMaintainService,
             SessionMaintainService sessionMaintainService,
+            PushHandler pushHandler,
             KeyGenerator<LongIdKey> keyGenerator,
             HandlerValidator handlerValidator
     ) {
         this.taskMaintainService = taskMaintainService;
         this.sessionMaintainService = sessionMaintainService;
+        this.pushHandler = pushHandler;
         this.keyGenerator = keyGenerator;
         this.handlerValidator = handlerValidator;
     }
@@ -278,6 +287,13 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
 
             // 更新任务实体。
             taskMaintainService.update(task);
+
+            // 消息推送。
+            try {
+                pushHandler.taskFinished(task);
+            } catch (Exception e) {
+                LOGGER.warn("推送任务完成消息时发生异常, 本次消息将不会被推送, 异常信息如下: ", e);
+            }
         } catch (Exception e) {
             throw HandlerExceptionHelper.parse(e);
         }
@@ -305,6 +321,13 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
 
             // 更新任务实体。
             taskMaintainService.update(task);
+
+            // 消息推送。
+            try {
+                pushHandler.taskFailed(task);
+            } catch (Exception e) {
+                LOGGER.warn("推送任务失败消息时发生异常, 本次消息将不会被推送, 异常信息如下: ", e);
+            }
         } catch (Exception e) {
             throw HandlerExceptionHelper.parse(e);
         }
@@ -333,6 +356,13 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
 
             // 更新任务实体。
             taskMaintainService.update(task);
+
+            // 消息推送。
+            try {
+                pushHandler.taskExpired(task);
+            } catch (Exception e) {
+                LOGGER.warn("推送任务过期消息时发生异常, 本次消息将不会被推送, 异常信息如下: ", e);
+            }
         } catch (Exception e) {
             throw HandlerExceptionHelper.parse(e);
         }
@@ -386,6 +416,13 @@ public class TaskOperateHandlerImpl implements TaskOperateHandler {
 
             // 更新任务实体。
             taskMaintainService.update(task);
+
+            // 消息推送。
+            try {
+                pushHandler.taskExpired(task);
+            } catch (Exception e) {
+                LOGGER.warn("推送任务死亡消息时发生异常, 本次消息将不会被推送, 异常信息如下: ", e);
+            }
         } catch (Exception e) {
             throw HandlerExceptionHelper.parse(e);
         }
