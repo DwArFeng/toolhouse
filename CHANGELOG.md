@@ -24,6 +24,7 @@
   - com.dwarfeng.toolhouse.impl.handler.executor.groovy.GroovyExecutorRegistry。
 
 - 实现核心机制。
+  - 任务检查机制。
   - 可视化机制。
   - 执行机制。
 
