@@ -5,6 +5,7 @@
 #### 功能构建
 
 - 实现运维指令。
+  - com.dwarfeng.toolhouse.impl.service.telqos.TaskCheckCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.VisualClientCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.VisualizerCacheCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.InputItemCommand。
