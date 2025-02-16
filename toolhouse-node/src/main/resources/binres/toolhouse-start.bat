@@ -32,7 +32,7 @@ SET java_logging_opts=^
 
 rem 打开目录，执行程序。
 cd "%basedir%"
-start "Toolhouse Note" /MAX ^
+start "Toolhouse" /MAX ^
 java -classpath "lib\*;libext\*" ^
 %jvm_memory_opts% ^
 %java_jmxremote_opts% ^
