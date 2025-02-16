@@ -17,6 +17,9 @@ public class LauncherSettingHandler implements Handler {
     @Value("${launcher.enable_task_check_delay}")
     private long enableTaskCheckDelay;
 
+    @Value("${launcher.start_reset_delay}")
+    private long startResetDelay;
+
     public boolean isResetExecutorSupport() {
         return resetExecutorSupport;
     }
@@ -33,6 +36,10 @@ public class LauncherSettingHandler implements Handler {
         return enableTaskCheckDelay;
     }
 
+    public long getStartResetDelay() {
+        return startResetDelay;
+    }
+
     @Override
     public String toString() {
         return "LauncherSettingHandler{" +
@@ -40,6 +47,7 @@ public class LauncherSettingHandler implements Handler {
                 ", resetVisualizerSupport=" + resetVisualizerSupport +
                 ", onlineTaskCheckDelay=" + onlineTaskCheckDelay +
                 ", enableTaskCheckDelay=" + enableTaskCheckDelay +
+                ", startResetDelay=" + startResetDelay +
                 '}';
     }
 }

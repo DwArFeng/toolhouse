@@ -17,6 +17,13 @@
   - com.dwarfeng.toolhouse.impl.service.telqos.ExecuteCommand。
   - com.dwarfeng.toolhouse.impl.service.telqos.ExecuteLocalCacheCommand。
 
+- 实现预设重置器。
+  - com.dwarfeng.toolhouse.impl.handler.resetter.CronResetter。
+  - com.dwarfeng.toolhouse.impl.handler.resetter.DubboResetter。
+  - com.dwarfeng.toolhouse.impl.handler.resetter.FixedDelayResetter。
+  - com.dwarfeng.toolhouse.impl.handler.resetter.FixedRateResetter。
+  - com.dwarfeng.toolhouse.impl.handler.resetter.NeverResetter。
+
 - 实现预设可视化器。
   - com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.DispatchVisualizer。
 
@@ -25,6 +32,7 @@
   - com.dwarfeng.toolhouse.impl.handler.executor.groovy.GroovyExecutorRegistry。
 
 - 实现核心机制。
+  - 重置机制。
   - 任务检查机制。
   - 可视化机制。
   - 执行机制。
