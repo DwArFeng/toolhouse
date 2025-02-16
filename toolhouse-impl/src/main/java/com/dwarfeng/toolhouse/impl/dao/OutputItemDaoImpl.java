@@ -4,6 +4,7 @@ import com.dwarfeng.subgrade.impl.dao.HibernateBatchBaseDao;
 import com.dwarfeng.subgrade.impl.dao.HibernateEntireLookupDao;
 import com.dwarfeng.subgrade.impl.dao.HibernatePresetLookupDao;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
+import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.exception.DaoException;
 import com.dwarfeng.toolhouse.impl.bean.entity.HibernateOutputItem;
@@ -70,48 +71,51 @@ public class OutputItemDaoImpl implements OutputItemDao {
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public List<TaskItemKey> batchInsert(List<OutputItem> elements) throws DaoException {
+    public List<TaskItemKey> batchInsert(@SkipRecord List<OutputItem> elements) throws DaoException {
         return batchBaseDao.batchInsert(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchUpdate(List<OutputItem> elements) throws DaoException {
+    public void batchUpdate(@SkipRecord List<OutputItem> elements) throws DaoException {
         batchBaseDao.batchUpdate(elements);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", rollbackFor = Exception.class)
-    public void batchDelete(List<TaskItemKey> keys) throws DaoException {
+    public void batchDelete(@SkipRecord List<TaskItemKey> keys) throws DaoException {
         batchBaseDao.batchDelete(keys);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public boolean allExists(List<TaskItemKey> keys) throws DaoException {
+    public boolean allExists(@SkipRecord List<TaskItemKey> keys) throws DaoException {
         return batchBaseDao.allExists(keys);
     }
 
     @Override
     @BehaviorAnalyse
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public boolean nonExists(List<TaskItemKey> keys) throws DaoException {
+    public boolean nonExists(@SkipRecord List<TaskItemKey> keys) throws DaoException {
         return batchBaseDao.nonExists(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
-    public List<OutputItem> batchGet(List<TaskItemKey> keys) throws DaoException {
+    public List<OutputItem> batchGet(@SkipRecord List<TaskItemKey> keys) throws DaoException {
         return batchBaseDao.batchGet(keys);
     }
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public List<OutputItem> lookup() throws DaoException {
         return entireLookupDao.lookup();
@@ -119,6 +123,7 @@ public class OutputItemDaoImpl implements OutputItemDao {
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public List<OutputItem> lookup(PagingInfo pagingInfo) throws DaoException {
         return entireLookupDao.lookup(pagingInfo);
@@ -133,6 +138,7 @@ public class OutputItemDaoImpl implements OutputItemDao {
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public List<OutputItem> lookup(String preset, Object[] objs) throws DaoException {
         return presetLookupDao.lookup(preset, objs);
@@ -140,6 +146,7 @@ public class OutputItemDaoImpl implements OutputItemDao {
 
     @Override
     @BehaviorAnalyse
+    @SkipRecord
     @Transactional(transactionManager = "hibernateTransactionManager", readOnly = true, rollbackFor = Exception.class)
     public List<OutputItem> lookup(String preset, Object[] objs, PagingInfo pagingInfo) throws DaoException {
         return presetLookupDao.lookup(preset, objs, pagingInfo);
