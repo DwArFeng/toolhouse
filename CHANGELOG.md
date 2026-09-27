@@ -1,27 +1,27 @@
 # ChangeLog
 
-### Release_1.1.0_20260927_build_A
+## Release_1.1.0_20260927_build_A
 
-#### 功能构建
+### 功能构建
 
 - 优化开发环境支持。
   - 在 .gitignore 中添加 VSCode 相关文件的忽略规则。
   - 在 .gitignore 中添加 Cursor IDE 相关文件的忽略规则。
   - 在 .gitignore 中添加 Vibe Coding 相关文件的忽略规则。
 
-#### Bug修复
+### Bug 修复
 
 - (无)
 
-#### 功能移除
+### 功能移除
 
 - (无)
 
 ---
 
-### Beta_1.0.0_20250216_build_A
+## Beta_1.0.0_20250216_build_A
 
-#### 功能构建
+### 功能构建
 
 - 实现运维指令。
   - com.dwarfeng.toolhouse.impl.service.telqos.ResetCommand。
@@ -98,10 +98,10 @@
 
 - 项目结构建立，程序清理测试通过。
 
-#### Bug修复
+### Bug 修复
 
 - (无)
 
-#### 功能移除
+### 功能移除
 
 - (无)
