@@ -31,7 +31,6 @@ public @interface ValidVariableType {
 
     class InternalConstraintValidator implements ConstraintValidator<ValidVariableType, Integer> {
 
-        // 执行校验操作
         @Override
         public boolean isValid(Integer value, ConstraintValidatorContext context) {
             try {

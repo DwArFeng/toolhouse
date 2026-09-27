@@ -31,7 +31,6 @@ public @interface ValidPermissionLevel {
 
     class InternalConstraintValidator implements ConstraintValidator<ValidPermissionLevel, Integer> {
 
-        // 执行校验操作
         @Override
         public boolean isValid(Integer value, ConstraintValidatorContext context) {
             try {

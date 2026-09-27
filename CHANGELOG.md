@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- `toolhouse-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.toolhouse.sdk.util.ValidPermissionLevel。
+  - com.dwarfeng.toolhouse.sdk.util.ValidTaskItemType。
+  - com.dwarfeng.toolhouse.sdk.util.ValidVariableType。
+
 - `toolhouse-stack` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.toolhouse.stack.bean.dto.VisualizerOverrideCallInfo。
 

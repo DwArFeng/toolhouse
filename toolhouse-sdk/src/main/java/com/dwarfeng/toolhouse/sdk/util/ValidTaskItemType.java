@@ -31,7 +31,6 @@ public @interface ValidTaskItemType {
 
     class InternalConstraintValidator implements ConstraintValidator<ValidTaskItemType, Integer> {
 
-        // 执行校验操作
         @Override
         public boolean isValid(Integer value, ConstraintValidatorContext context) {
             try {
