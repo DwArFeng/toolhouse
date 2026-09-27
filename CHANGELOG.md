@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `toolhouse-stack` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.toolhouse.stack.bean.dto.VisualizerOverrideCallInfo。
+
 - 优化文件格式。
   - 优化 `opt-*.xml` 文件的格式。
   - 优化 `*.properties` 文件的格式。

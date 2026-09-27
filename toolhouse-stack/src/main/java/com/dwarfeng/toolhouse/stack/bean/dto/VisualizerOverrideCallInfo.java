@@ -138,7 +138,7 @@ public class VisualizerOverrideCallInfo implements Dto {
 
     @Override
     public String toString() {
-        return "Visualizer文本ualCallInfo{" +
+        return "VisualizerOverrideCallInfo{" +
                 "sessionKey=" + sessionKey +
                 ", visualizerStringId='" + visualizerStringId + '\'' +
                 ", functionName='" + functionName + '\'' +
