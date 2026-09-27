@@ -15,17 +15,24 @@ import java.util.Set;
 public class HibernateUser implements Bean {
 
     private static final long serialVersionUID = -3162510786322649799L;
-    
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+
+    // region 主键
+
     @Id
     @Column(name = "id", nullable = false, unique = true, length = Constraints.LENGTH_USER)
     private String stringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernatePoca.class, mappedBy = "user")
     private Set<HibernatePoca> pocas = new HashSet<>();
 
@@ -35,10 +42,13 @@ public class HibernateUser implements Bean {
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateSession.class, mappedBy = "user")
     private Set<HibernateSession> sessions = new HashSet<>();
 
+    // endregion
+
     public HibernateUser() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateStringIdKey getKey() {
         return Optional.ofNullable(stringId).map(HibernateStringIdKey::new).orElse(null);
     }
@@ -47,7 +57,10 @@ public class HibernateUser implements Bean {
         this.stringId = Optional.ofNullable(idKey).map(HibernateStringIdKey::getStringId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public String getStringId() {
         return stringId;
     }
@@ -87,6 +100,8 @@ public class HibernateUser implements Bean {
     public void setSessions(Set<HibernateSession> sessions) {
         this.sessions = sessions;
     }
+
+    // endregion
 
     @Override
     public String toString() {

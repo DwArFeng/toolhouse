@@ -14,7 +14,8 @@ public class HibernateFavorite implements Bean {
 
     private static final long serialVersionUID = 7639159556782653240L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "cabinet_id", nullable = false)
     private Long cabinetLongId;
@@ -23,11 +24,17 @@ public class HibernateFavorite implements Bean {
     @Column(name = "user_id", length = Constraints.LENGTH_USER, nullable = false)
     private String userStringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateCabinet.class)
     @JoinColumns({ //
             @JoinColumn(name = "cabinet_id", referencedColumnName = "id", insertable = false, updatable = false), //
@@ -40,10 +47,13 @@ public class HibernateFavorite implements Bean {
     })
     private HibernateUser user;
 
+    // endregion
+
     public HibernateFavorite() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateFavoriteKey getKey() {
         return new HibernateFavoriteKey(cabinetLongId, userStringId);
     }
@@ -58,7 +68,10 @@ public class HibernateFavorite implements Bean {
         }
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getCabinetLongId() {
         return cabinetLongId;
     }
@@ -98,6 +111,8 @@ public class HibernateFavorite implements Bean {
     public void setUser(HibernateUser user) {
         this.user = user;
     }
+
+    // endregion
 
     @Override
     public String toString() {

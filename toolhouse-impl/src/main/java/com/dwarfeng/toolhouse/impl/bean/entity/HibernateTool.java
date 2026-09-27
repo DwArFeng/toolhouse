@@ -16,20 +16,27 @@ import java.util.Set;
 public class HibernateTool implements Bean {
 
     private static final long serialVersionUID = -4596376197530266451L;
-    
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+
+    // region 主键
+
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private Long longId;
 
-    // -----------------------------------------------------------外键-----------------------------------------------------------
+    // endregion
+
+    // region 外键
+
     @Column(name = "folder_id")
     private Long folderLongId;
 
     @Column(name = "cabinet_id")
     private Long cabinetLongId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "name", length = Constraints.LENGTH_NAME, nullable = false)
     private String name;
 
@@ -40,7 +47,10 @@ public class HibernateTool implements Bean {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateFolder.class)
     @JoinColumns({ //
             @JoinColumn(name = "folder_id", referencedColumnName = "id", insertable = false, updatable = false), //
@@ -53,7 +63,10 @@ public class HibernateTool implements Bean {
     })
     private HibernateCabinet cabinet;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateVisualizerInfo.class, mappedBy = "tool")
     private Set<HibernateVisualizerInfo> visualizerInfos = new HashSet<>();
 
@@ -63,10 +76,13 @@ public class HibernateTool implements Bean {
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateSession.class, mappedBy = "tool")
     private Set<HibernateSession> sessions = new HashSet<>();
 
+    // endregion
+
     public HibernateTool() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateLongIdKey getKey() {
         return Optional.ofNullable(longId).map(HibernateLongIdKey::new).orElse(null);
     }
@@ -91,7 +107,10 @@ public class HibernateTool implements Bean {
         this.cabinetLongId = Optional.ofNullable(idKey).map(HibernateLongIdKey::getLongId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getLongId() {
         return longId;
     }
@@ -179,6 +198,8 @@ public class HibernateTool implements Bean {
     public void setSessions(Set<HibernateSession> sessions) {
         this.sessions = sessions;
     }
+
+    // endregion
 
     @Override
     public String toString() {

@@ -13,7 +13,8 @@ public class HibernateVisualizerInfo implements Bean {
 
     private static final long serialVersionUID = 270163041650571153L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "tool_id", nullable = false)
     private Long toolLongId;
@@ -22,7 +23,10 @@ public class HibernateVisualizerInfo implements Bean {
     @Column(name = "visualizer_id", length = Constraints.LENGTH_STRING_ID, nullable = false)
     private String visualizerStringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
@@ -35,17 +39,23 @@ public class HibernateVisualizerInfo implements Bean {
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateTool.class)
     @JoinColumns({ //
             @JoinColumn(name = "tool_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateTool tool;
 
+    // endregion
+
     public HibernateVisualizerInfo() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateVisualizerKey getKey() {
         return new HibernateVisualizerKey(toolLongId, visualizerStringId);
     }
@@ -60,7 +70,10 @@ public class HibernateVisualizerInfo implements Bean {
         }
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getToolLongId() {
         return toolLongId;
     }
@@ -116,6 +129,8 @@ public class HibernateVisualizerInfo implements Bean {
     public void setTool(HibernateTool tool) {
         this.tool = tool;
     }
+
+    // endregion
 
     @Override
     public String toString() {

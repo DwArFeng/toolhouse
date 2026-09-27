@@ -17,12 +17,16 @@ public class HibernateCabinet implements Bean {
 
     private static final long serialVersionUID = 5925595007338381066L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private Long longId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "name", length = Constraints.LENGTH_NAME, nullable = false)
     private String name;
 
@@ -36,7 +40,10 @@ public class HibernateCabinet implements Bean {
     @Column(name = "tool_count")
     private int toolCount;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateFolder.class, mappedBy = "cabinet")
     private Set<HibernateFolder> folders = new HashSet<>();
 
@@ -49,10 +56,13 @@ public class HibernateCabinet implements Bean {
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateFavorite.class, mappedBy = "cabinet")
     private Set<HibernateFavorite> favorites = new HashSet<>();
 
+    // endregion
+
     public HibernateCabinet() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateLongIdKey getKey() {
         return Optional.ofNullable(longId).map(HibernateLongIdKey::new).orElse(null);
     }
@@ -61,7 +71,10 @@ public class HibernateCabinet implements Bean {
         this.longId = Optional.ofNullable(idKey).map(HibernateLongIdKey::getLongId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getLongId() {
         return longId;
     }
@@ -133,6 +146,8 @@ public class HibernateCabinet implements Bean {
     public void setFavorites(Set<HibernateFavorite> favorites) {
         this.favorites = favorites;
     }
+
+    // endregion
 
     @Override
     public String toString() {

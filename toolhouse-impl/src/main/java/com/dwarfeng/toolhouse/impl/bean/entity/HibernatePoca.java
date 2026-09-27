@@ -14,7 +14,8 @@ public class HibernatePoca implements Bean {
 
     private static final long serialVersionUID = -5121871210298719604L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "cabinet_id", nullable = false)
     private Long cabinetLongId;
@@ -23,14 +24,20 @@ public class HibernatePoca implements Bean {
     @Column(name = "user_id", length = Constraints.LENGTH_USER, nullable = false)
     private String userStringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "permission_level")
     private int permissionLevel;
 
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateCabinet.class)
     @JoinColumns({ //
             @JoinColumn(name = "cabinet_id", referencedColumnName = "id", insertable = false, updatable = false), //
@@ -43,10 +50,13 @@ public class HibernatePoca implements Bean {
     })
     private HibernateUser user;
 
+    // endregion
+
     public HibernatePoca() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernatePocaKey getKey() {
         return new HibernatePocaKey(cabinetLongId, userStringId);
     }
@@ -61,7 +71,10 @@ public class HibernatePoca implements Bean {
         }
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getCabinetLongId() {
         return cabinetLongId;
     }
@@ -109,6 +122,8 @@ public class HibernatePoca implements Bean {
     public void setUser(HibernateUser user) {
         this.user = user;
     }
+
+    // endregion
 
     @Override
     public String toString() {

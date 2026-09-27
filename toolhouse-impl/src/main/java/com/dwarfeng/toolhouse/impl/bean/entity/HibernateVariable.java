@@ -18,7 +18,8 @@ public class HibernateVariable implements Bean {
 
     private static final long serialVersionUID = -6841124855733853492L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "session_id", nullable = false)
     private Long sessionLongId;
@@ -27,7 +28,10 @@ public class HibernateVariable implements Bean {
     @Column(name = "variable_id", length = Constraints.LENGTH_STRING_ID, nullable = false)
     private String variableStringId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "tool_id")
     private Long toolLongId;
 
@@ -59,17 +63,23 @@ public class HibernateVariable implements Bean {
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateSession.class)
     @JoinColumns({ //
             @JoinColumn(name = "session_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateSession session;
 
+    // endregion
+
     public HibernateVariable() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateVariableKey getKey() {
         return new HibernateVariableKey(sessionLongId, variableStringId);
     }
@@ -100,7 +110,10 @@ public class HibernateVariable implements Bean {
         this.userStringId = Optional.ofNullable(key).map(HibernateStringIdKey::getStringId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getSessionLongId() {
         return sessionLongId;
     }
@@ -204,6 +217,8 @@ public class HibernateVariable implements Bean {
     public void setSession(HibernateSession session) {
         this.session = session;
     }
+
+    // endregion
 
     @Override
     public String toString() {

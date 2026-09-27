@@ -16,26 +16,36 @@ public class HibernateFolder implements Bean {
 
     private static final long serialVersionUID = 8728482102980275953L;
 
-    // -----------------------------------------------------------主键-----------------------------------------------------------
+    // region 主键
+
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private Long longId;
 
-    // -----------------------------------------------------------外键-----------------------------------------------------------
+    // endregion
+
+    // region 外键
+
     @Column(name = "parent_id")
     private Long parentLongId;
 
     @Column(name = "cabinet_id")
     private Long cabinetLongId;
 
-    // -----------------------------------------------------------主属性字段-----------------------------------------------------------
+    // endregion
+
+    // region 主属性字段
+
     @Column(name = "name", length = Constraints.LENGTH_NAME, nullable = false)
     private String name;
 
     @Column(name = "remark", length = Constraints.LENGTH_REMARK)
     private String remark;
 
-    // -----------------------------------------------------------多对一-----------------------------------------------------------
+    // endregion
+
+    // region 多对一
+
     @ManyToOne(targetEntity = HibernateFolder.class)
     @JoinColumns({ //
             @JoinColumn(name = "parent_id", referencedColumnName = "id", insertable = false, updatable = false), //
@@ -48,14 +58,20 @@ public class HibernateFolder implements Bean {
     })
     private HibernateCabinet cabinet;
 
-    // -----------------------------------------------------------一对多-----------------------------------------------------------
+    // endregion
+
+    // region 一对多
+
     @OneToMany(cascade = CascadeType.MERGE, targetEntity = HibernateTool.class, mappedBy = "folder")
     private Set<HibernateTool> tools = new HashSet<>();
+
+    // endregion
 
     public HibernateFolder() {
     }
 
-    // -----------------------------------------------------------映射用属性区-----------------------------------------------------------
+    // region 映射用属性区
+
     public HibernateLongIdKey getKey() {
         return Optional.ofNullable(longId).map(HibernateLongIdKey::new).orElse(null);
     }
@@ -80,7 +96,10 @@ public class HibernateFolder implements Bean {
         this.cabinetLongId = Optional.ofNullable(idKey).map(HibernateLongIdKey::getLongId).orElse(null);
     }
 
-    // -----------------------------------------------------------常规属性区-----------------------------------------------------------
+    // endregion
+
+    // region 常规属性区
+
     public Long getLongId() {
         return longId;
     }
@@ -144,6 +163,8 @@ public class HibernateFolder implements Bean {
     public void setTools(Set<HibernateTool> tools) {
         this.tools = tools;
     }
+
+    // endregion
 
     @Override
     public String toString() {

@@ -4,6 +4,34 @@
 
 ### 功能构建
 
+- `toolhouse-impl` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateCabinet。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateExecutorInfo。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateExecutorSupport。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateFavorite。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateFileInfo。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateFolder。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateInputItem。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateOutputItem。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernatePoca。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateSession。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateTask。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateTool。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateUser。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateVariable。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateVisualizerInfo。
+  - com.dwarfeng.toolhouse.impl.bean.entity.HibernateVisualizerSupport。
+  - com.dwarfeng.toolhouse.impl.handler.executor.groovy.GroovyExecutorRegistry。
+  - com.dwarfeng.toolhouse.impl.service.telqos.ExecuteCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.FileCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.InputItemCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.OutputItemCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.SessionCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.TaskCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.VariableCommand。
+  - com.dwarfeng.toolhouse.impl.service.telqos.VisualClientCommand。
+  - com.dwarfeng.toolhouse.impl.configuration.FastJsonConfiguration。
+
 - `toolhouse-sdk` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.toolhouse.sdk.util.ValidPermissionLevel。
   - com.dwarfeng.toolhouse.sdk.util.ValidTaskItemType。

@@ -67,7 +67,7 @@ public class GroovyExecutorRegistry extends AbstractExecutorRegistry {
     @Override
     public Executor makeExecutor(String type, String param) throws ExecutorException {
         try (GroovyClassLoader classLoader = new GroovyClassLoader()) {
-            // 通过Groovy脚本生成处理器。
+            // 通过 Groovy 脚本生成处理器。
             Class<?> aClass = classLoader.parseClass(param);
             Processor processor = (Processor) aClass.newInstance();
             // 生成并返回执行器。
