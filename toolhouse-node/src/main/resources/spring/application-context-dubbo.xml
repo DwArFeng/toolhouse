@@ -9,25 +9,32 @@
         http://dubbo.apache.org/schema/dubbo/dubbo.xsd"
 >
 
+    <!-- region 基础配置 -->
+
     <dubbo:application name="toolhouse-node">
         <dubbo:parameter key="qos.enable" value="false"/>
     </dubbo:application>
 
-    <!-- zookeeper注册中心 -->
+    <!-- Zookeeper 注册中心。 -->
     <dubbo:registry address="${dubbo.registry.zookeeper.address}" timeout="${dubbo.registry.zookeeper.timeout}"/>
 
-    <!-- dubbo协议 -->
+    <!-- Dubbo 协议。 -->
     <dubbo:protocol
             name="dubbo" port="${dubbo.protocol.dubbo.port}" host="${dubbo.protocol.dubbo.host}"
             dispatcher="message" threadpool="fixed" threads="100"
     />
-    <!-- hessian协议 -->
+    <!-- Hessian 协议。 -->
     <dubbo:protocol name="hessian" port="${dubbo.protocol.hessian.port}" server="jetty"/>
 
-    <!-- 默认使用dubbo协议 -->
+    <!-- 默认使用 dubbo 协议。 -->
     <dubbo:provider protocol="dubbo"/>
 
-    <!-- 向注册中心注册暴露服务地址,注册服务 -->
+    <!-- endregion -->
+
+    <!-- region 服务配置 -->
+
+    <!-- region toolhouse -->
+
     <dubbo:service
             interface="com.dwarfeng.toolhouse.stack.service.UserMaintainService"
             ref="userMaintainServiceImpl"
@@ -170,11 +177,22 @@
             group="${dubbo.provider.group}"
     />
 
-    <!-- 向注册中心注册暴露服务地址,注册消费者服务 -->
+    <!-- endregion -->
+
+    <!-- endregion -->
+
+    <!-- region 引用配置 -->
+
+    <!-- region snowflake -->
+
     <dubbo:reference
             id="snowflakeGenerateService"
             interface="com.dwarfeng.sfds.stack.service.GenerateService"
             check="false"
             group="${dubbo.consumer.snowflake.group}"
     />
+
+    <!-- endregion -->
+
+    <!-- endregion -->
 </beans>
