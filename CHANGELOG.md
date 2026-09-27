@@ -4,6 +4,9 @@
 
 ### 功能构建
 
+- `toolhouse-node` 子模块类优化注释、文档注释格式、代码换行格式。
+  - com.dwarfeng.toolhouse.node.configuration.FastJsonConfiguration。
+
 - `toolhouse-impl` 子模块类优化注释、文档注释格式、代码换行格式。
   - com.dwarfeng.toolhouse.impl.bean.entity.HibernateCabinet。
   - com.dwarfeng.toolhouse.impl.bean.entity.HibernateExecutorInfo。
