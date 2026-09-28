@@ -1,6 +1,6 @@
 package com.dwarfeng.toolhouse.impl.handler.executor.groovy;
 
-import com.dwarfeng.toolhouse.impl.handler.executor.AbstractAgent;
+import com.dwarfeng.toolhouse.sdk.handler.executor.AbstractAgent;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

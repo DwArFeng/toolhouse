@@ -1,6 +1,5 @@
 package com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch;
 
-import com.dwarfeng.toolhouse.impl.handler.visualizer.AbstractVisualizer;
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.annotations.*;
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.groups.DefaultGroup;
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.model.ResultContext;
@@ -10,6 +9,7 @@ import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.struct.ClearCache
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.struct.RequestMethodMeta;
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.struct.RequestParamMeta;
 import com.dwarfeng.toolhouse.impl.handler.visualizer.dispatch.struct.RequestParamType;
+import com.dwarfeng.toolhouse.sdk.handler.visualizer.AbstractVisualizer;
 import com.dwarfeng.toolhouse.stack.bean.dto.VisualizerCallResult;
 import com.dwarfeng.toolhouse.stack.bean.dto.VisualizerStreamCallResult;
 import com.dwarfeng.toolhouse.stack.bean.dto.VisualizerSystemCallInfo;

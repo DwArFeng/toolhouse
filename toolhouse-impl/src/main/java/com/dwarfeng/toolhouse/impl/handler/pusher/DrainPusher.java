@@ -1,5 +1,6 @@
 package com.dwarfeng.toolhouse.impl.handler.pusher;
 
+import com.dwarfeng.toolhouse.sdk.handler.pusher.AbstractPusher;
 import com.dwarfeng.toolhouse.stack.bean.entity.Task;
 import org.springframework.stereotype.Component;
 

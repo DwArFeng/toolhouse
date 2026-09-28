@@ -1,49 +1,20 @@
 package com.dwarfeng.toolhouse.impl.handler.visualizer;
 
-import com.dwarfeng.toolhouse.impl.handler.VisualizerProvider;
-import com.dwarfeng.toolhouse.impl.handler.VisualizerSupporter;
-
-import java.util.Objects;
-
 /**
  * 抽象可视化器注册。
  *
  * @author DwArFeng
+ * @see com.dwarfeng.toolhouse.sdk.handler.visualizer.AbstractVisualizerRegistry
  * @since beta-1.0.0
+ * @deprecated 该对象已经被废弃，请使用 sdk 模块下的对应对象代替。
  */
-public abstract class AbstractVisualizerRegistry implements VisualizerSupporter, VisualizerProvider {
-
-    protected String visualizerType;
+@Deprecated
+public abstract class AbstractVisualizerRegistry extends com.dwarfeng.toolhouse.sdk.handler.visualizer.AbstractVisualizerRegistry {
 
     public AbstractVisualizerRegistry() {
     }
 
     public AbstractVisualizerRegistry(String visualizerType) {
-        this.visualizerType = visualizerType;
-    }
-
-    @Override
-    public boolean supportType(String type) {
-        return Objects.equals(visualizerType, type);
-    }
-
-    @Override
-    public String provideType() {
-        return visualizerType;
-    }
-
-    public String getVisualizerType() {
-        return visualizerType;
-    }
-
-    public void setVisualizerType(String visualizerType) {
-        this.visualizerType = visualizerType;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractVisualizerRegistry{" +
-                "visualizerType='" + visualizerType + '\'' +
-                '}';
+        super(visualizerType);
     }
 }
