@@ -190,6 +190,11 @@
             <groupId>com.dwarfeng</groupId>
             <artifactId>subgrade-impl</artifactId>
         </dependency>
+        <!-- Dwarfeng-datamark 组件 -->
+        <dependency>
+            <groupId>com.dwarfeng</groupId>
+            <artifactId>dwarfeng-datamark</artifactId>
+        </dependency>
         <!-- Dwarfeng-ftp 组件 -->
         <dependency>
             <groupId>com.dwarfeng</groupId>

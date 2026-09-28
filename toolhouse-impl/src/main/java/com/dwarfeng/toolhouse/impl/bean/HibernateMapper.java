@@ -104,6 +104,8 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     Tool toolFromHibernate(HibernateTool hibernateTool);
 
+    @Mapping(target = "modifiedDatamark", ignore = true)
+    @Mapping(target = "createdDatamark", ignore = true)
     @Mapping(target = "sessions", ignore = true)
     @Mapping(target = "stringId", ignore = true)
     @Mapping(target = "pocas", ignore = true)
@@ -122,6 +124,8 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     Favorite favoriteFromHibernate(HibernateFavorite hibernateFavorite);
 
+    @Mapping(target = "modifiedDatamark", ignore = true)
+    @Mapping(target = "createdDatamark", ignore = true)
     @Mapping(target = "visualizerStringId", ignore = true)
     @Mapping(target = "toolLongId", ignore = true)
     @Mapping(target = "tool", ignore = true)
@@ -136,6 +140,8 @@ public interface HibernateMapper {
     @InheritInverseConfiguration
     VisualizerSupport visualizerSupportFromHibernate(HibernateVisualizerSupport hibernateVisualizerSupport);
 
+    @Mapping(target = "modifiedDatamark", ignore = true)
+    @Mapping(target = "createdDatamark", ignore = true)
     @Mapping(target = "executorStringId", ignore = true)
     @Mapping(target = "toolLongId", ignore = true)
     @Mapping(target = "tool", ignore = true)

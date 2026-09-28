@@ -17,6 +17,7 @@ public class ServiceExceptionMapperConfiguration {
     public MapServiceExceptionMapper mapServiceExceptionMapper() {
         Map<Class<? extends Exception>, ServiceException.Code> destination = ServiceExceptionHelper.putDefaultDestination(null);
         destination = com.dwarfeng.ftp.util.ServiceExceptionHelper.putDefaultDestination(destination);
+        destination = com.dwarfeng.datamark.util.ServiceExceptionHelper.putDefaultDestination(destination);
         destination.put(UserNotExistsException.class, ServiceExceptionCodes.USER_NOT_EXISTS);
         destination.put(UserNotPermittedForCabinetException.class, ServiceExceptionCodes.USER_NOT_PERMITTED_FOR_CABINET);
         destination.put(CabinetNotExistsException.class, ServiceExceptionCodes.CABINET_NOT_EXISTS);

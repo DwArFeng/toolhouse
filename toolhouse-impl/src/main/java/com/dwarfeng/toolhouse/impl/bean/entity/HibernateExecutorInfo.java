@@ -1,5 +1,7 @@
 package com.dwarfeng.toolhouse.impl.bean.entity;
 
+import com.dwarfeng.datamark.bean.jpa.DatamarkEntityListener;
+import com.dwarfeng.datamark.bean.jpa.DatamarkField;
 import com.dwarfeng.subgrade.stack.bean.Bean;
 import com.dwarfeng.toolhouse.impl.bean.key.HibernateExecutorKey;
 import com.dwarfeng.toolhouse.sdk.util.Constraints;
@@ -9,9 +11,10 @@ import javax.persistence.*;
 @Entity
 @IdClass(HibernateExecutorKey.class)
 @Table(name = "tbl_executor_info")
+@EntityListeners(DatamarkEntityListener.class)
 public class HibernateExecutorInfo implements Bean {
 
-    private static final long serialVersionUID = 1484673514871953485L;
+    private static final long serialVersionUID = 6096394601356083998L;
 
     // region 主键
 
@@ -48,6 +51,25 @@ public class HibernateExecutorInfo implements Bean {
             @JoinColumn(name = "tool_id", referencedColumnName = "id", insertable = false, updatable = false), //
     })
     private HibernateTool tool;
+
+    // endregion
+
+    // region 审计
+
+    @DatamarkField(handlerName = "executorInfoDatamarkHandler")
+    @Column(
+            name = "created_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE,
+            updatable = false
+    )
+    private String createdDatamark;
+
+    @DatamarkField(handlerName = "executorInfoDatamarkHandler")
+    @Column(
+            name = "modified_datamark",
+            length = com.dwarfeng.datamark.util.Constraints.LENGTH_DATAMARK_VALUE
+    )
+    private String modifiedDatamark;
 
     // endregion
 
@@ -130,6 +152,22 @@ public class HibernateExecutorInfo implements Bean {
         this.tool = tool;
     }
 
+    public String getCreatedDatamark() {
+        return createdDatamark;
+    }
+
+    public void setCreatedDatamark(String createdDatamark) {
+        this.createdDatamark = createdDatamark;
+    }
+
+    public String getModifiedDatamark() {
+        return modifiedDatamark;
+    }
+
+    public void setModifiedDatamark(String modifiedDatamark) {
+        this.modifiedDatamark = modifiedDatamark;
+    }
+
     // endregion
 
     @Override
@@ -141,6 +179,8 @@ public class HibernateExecutorInfo implements Bean {
                 "type = " + type + ", " +
                 "param = " + param + ", " +
                 "remark = " + remark + ", " +
-                "tool = " + tool + ")";
+                "tool = " + tool + ", " +
+                "createdDatamark = " + createdDatamark + ", " +
+                "modifiedDatamark = " + modifiedDatamark + ")";
     }
 }
