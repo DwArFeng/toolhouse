@@ -2,6 +2,7 @@ package com.dwarfeng.toolhouse.impl.handler;
 
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -40,10 +41,10 @@ public class FtpPathResolver {
     // 为了代码的可读性，此处不做简化。
     @SuppressWarnings("RedundantIfStatement")
     private static boolean invalidRootPath(@Nullable String rootPathString) {
-        if (StringUtils.startsWith(rootPathString, ROOT_PATH_STRING_SEPARATOR_STRING)) {
+        if (Strings.CS.startsWith(rootPathString, ROOT_PATH_STRING_SEPARATOR_STRING)) {
             return true;
         }
-        if (StringUtils.endsWith(rootPathString, ROOT_PATH_STRING_SEPARATOR_STRING)) {
+        if (Strings.CS.endsWith(rootPathString, ROOT_PATH_STRING_SEPARATOR_STRING)) {
             return true;
         }
         return false;
