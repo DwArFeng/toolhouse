@@ -14,7 +14,7 @@ public abstract class AbstractPusher extends com.dwarfeng.toolhouse.sdk.handler.
     public AbstractPusher() {
     }
 
-    public AbstractPusher(String sinkType) {
-        super(sinkType);
+    public AbstractPusher(String pusherType) {
+        super(pusherType);
     }
 }

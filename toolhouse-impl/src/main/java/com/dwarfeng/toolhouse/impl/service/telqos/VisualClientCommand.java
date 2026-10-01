@@ -775,4 +775,3 @@ public class VisualClientCommand extends CliCommand {
         }
     }
 }
-
