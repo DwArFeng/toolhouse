@@ -29,7 +29,7 @@
                 <include>*.sh</include>
             </includes>
             <filtered>true</filtered>
-            <fileMode>755</fileMode>
+            <fileMode>0755</fileMode>
             <lineEnding>unix</lineEnding>
         </fileSet>
         <fileSet>
@@ -39,7 +39,7 @@
                 <include>*.bat</include>
             </includes>
             <filtered>true</filtered>
-            <fileMode>755</fileMode>
+            <fileMode>0755</fileMode>
             <lineEnding>dos</lineEnding>
         </fileSet>
         <fileSet>
