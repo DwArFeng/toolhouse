@@ -3,10 +3,9 @@ package com.dwarfeng.toolhouse.node.launcher;
 import com.dwarfeng.springterminator.sdk.util.ApplicationUtil;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
 import com.dwarfeng.toolhouse.node.handler.LauncherSettingHandler;
-import com.dwarfeng.toolhouse.stack.service.ExecutorSupportMaintainService;
 import com.dwarfeng.toolhouse.stack.service.ResetQosService;
+import com.dwarfeng.toolhouse.stack.service.SupportQosService;
 import com.dwarfeng.toolhouse.stack.service.TaskCheckQosService;
-import com.dwarfeng.toolhouse.stack.service.VisualizerSupportMaintainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -53,9 +52,9 @@ public class Launcher {
         // 判断是否重置执行器支持，并按条件执行重置操作。
         if (launcherSettingHandler.isResetExecutorSupport()) {
             LOGGER.info("重置执行器支持...");
-            ExecutorSupportMaintainService maintainService = ctx.getBean(ExecutorSupportMaintainService.class);
+            SupportQosService supportQosService = ctx.getBean(SupportQosService.class);
             try {
-                maintainService.reset();
+                supportQosService.resetExecutor();
             } catch (ServiceException e) {
                 LOGGER.warn("执行器支持重置失败，异常信息如下", e);
             }
@@ -69,9 +68,9 @@ public class Launcher {
         // 判断是否重置可视化器支持，并按条件可视化重置操作。
         if (launcherSettingHandler.isResetVisualizerSupport()) {
             LOGGER.info("重置可视化器支持...");
-            VisualizerSupportMaintainService maintainService = ctx.getBean(VisualizerSupportMaintainService.class);
+            SupportQosService supportQosService = ctx.getBean(SupportQosService.class);
             try {
-                maintainService.reset();
+                supportQosService.resetVisualizer();
             } catch (ServiceException e) {
                 LOGGER.warn("可视化器支持重置失败，异常信息如下", e);
             }

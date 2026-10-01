@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 优化支持实体机制。
+  - com.dwarfeng.toolhouse.stack.service.SupportQosService。
+  - com.dwarfeng.toolhouse.impl.service.telqos.SupportCommand。
+  - 将执行器、可视化器支持维护服务的重置功能迁移至 QoS 服务。
+
 - 优化启停脚本注释，以规避潜在的字符集问题。
   - binres/toolhouse-start.bat。
   - binres/toolhouse-start.sh。

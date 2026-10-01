@@ -3,25 +3,18 @@ package com.dwarfeng.toolhouse.impl.service;
 import com.dwarfeng.subgrade.impl.service.DaoOnlyEntireLookupService;
 import com.dwarfeng.subgrade.impl.service.DaoOnlyPresetLookupService;
 import com.dwarfeng.subgrade.impl.service.GeneralBatchCrudService;
-import com.dwarfeng.subgrade.sdk.exception.ServiceExceptionHelper;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.BehaviorAnalyse;
 import com.dwarfeng.subgrade.sdk.interceptor.analyse.SkipRecord;
 import com.dwarfeng.subgrade.stack.bean.dto.PagedData;
 import com.dwarfeng.subgrade.stack.bean.dto.PagingInfo;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
 import com.dwarfeng.subgrade.stack.exception.ServiceException;
-import com.dwarfeng.subgrade.stack.exception.ServiceExceptionMapper;
-import com.dwarfeng.subgrade.stack.log.LogLevel;
-import com.dwarfeng.toolhouse.sdk.handler.ExecutorSupporter;
 import com.dwarfeng.toolhouse.stack.bean.entity.ExecutorSupport;
 import com.dwarfeng.toolhouse.stack.service.ExecutorSupportMaintainService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class ExecutorSupportMaintainServiceImpl implements ExecutorSupportMaintainService {
@@ -30,26 +23,14 @@ public class ExecutorSupportMaintainServiceImpl implements ExecutorSupportMainta
     private final DaoOnlyEntireLookupService<ExecutorSupport> entireLookupService;
     private final DaoOnlyPresetLookupService<ExecutorSupport> presetLookupService;
 
-    private final List<ExecutorSupporter> executorSupporters;
-
-    private final ServiceExceptionMapper sem;
-
     public ExecutorSupportMaintainServiceImpl(
             GeneralBatchCrudService<StringIdKey, ExecutorSupport> crudService,
             DaoOnlyEntireLookupService<ExecutorSupport> entireLookupService,
-            DaoOnlyPresetLookupService<ExecutorSupport> presetLookupService,
-            List<ExecutorSupporter> executorSupporters,
-            ServiceExceptionMapper sem
+            DaoOnlyPresetLookupService<ExecutorSupport> presetLookupService
     ) {
         this.crudService = crudService;
         this.entireLookupService = entireLookupService;
         this.presetLookupService = presetLookupService;
-        if (Objects.isNull(executorSupporters)) {
-            this.executorSupporters = new ArrayList<>();
-        } else {
-            this.executorSupporters = executorSupporters;
-        }
-        this.sem = sem;
     }
 
     @Override
@@ -276,27 +257,6 @@ public class ExecutorSupportMaintainServiceImpl implements ExecutorSupportMainta
     public List<ExecutorSupport> lookupAsList(String preset, Object[] objs, PagingInfo pagingInfo)
             throws ServiceException {
         return presetLookupService.lookupAsList(preset, objs, pagingInfo);
-    }
-
-    @Override
-    @BehaviorAnalyse
-    public void reset() throws ServiceException {
-        try {
-            List<StringIdKey> executorKeys = entireLookupService.lookupAsList().stream()
-                    .map(ExecutorSupport::getKey).collect(Collectors.toList());
-            crudService.batchDelete(executorKeys);
-            List<ExecutorSupport> executorSupports = executorSupporters.stream().map(
-                    supporter -> new ExecutorSupport(
-                            new StringIdKey(supporter.provideType()),
-                            supporter.provideLabel(),
-                            supporter.provideDescription(),
-                            supporter.provideExampleParam()
-                    )
-            ).collect(Collectors.toList());
-            crudService.batchInsert(executorSupports);
-        } catch (Exception e) {
-            throw ServiceExceptionHelper.logParse("重置执行器支持时发生异常", LogLevel.WARN, e, sem);
-        }
     }
 
     @Override
