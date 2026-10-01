@@ -123,6 +123,8 @@
 
 ### Bug 修复
 
+- 修正 `toolhouse-impl` 模块中错误的 dubbo 应用名称。
+
 - 修复 `assembly.xml` 中的配置错误。
 
 ### 功能移除
