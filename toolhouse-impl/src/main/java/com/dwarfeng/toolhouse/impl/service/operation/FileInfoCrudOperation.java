@@ -74,7 +74,7 @@ public class FileInfoCrudOperation implements BatchCrudOperation<LongIdKey, File
     public void delete(LongIdKey key) throws Exception {
         // 如果存在 文件，则删除 文件。
         String[] path = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-        String fileName = ftpPathResolver.resolveFileName(key);
+        String fileName = Long.toString(key.getLongId());
         if (ftpHandler.existsFile(path, fileName)) {
             ftpHandler.deleteFile(path, fileName);
         }

@@ -70,7 +70,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             byte[] content = ftpHandler.retrieveFile(filePath, fileName);
 
             // 更新文件信息。
@@ -106,7 +106,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件流。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream content = ftpHandler.openInputStream(filePath, fileName);
 
             // 更新文件信息。
@@ -143,7 +143,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUploadInfo 以及其它信息，构造 FileInfo 实体并插入。
@@ -193,7 +193,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -245,7 +245,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUpdateInfo 以及其它信息，更新 FileInfo 实体。
@@ -284,7 +284,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -323,7 +323,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 删除文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.deleteFile(filePath, fileName);
 
             // 删除文件信息。
@@ -355,7 +355,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             byte[] content = ftpHandler.retrieveFile(filePath, fileName);
 
             // 更新文件信息。
@@ -392,7 +392,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件流。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream content = ftpHandler.openInputStream(filePath, fileName);
 
             // 更新文件信息。
@@ -429,7 +429,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUploadInfo 以及其它信息，构造 FileInfo 实体并插入。
@@ -479,7 +479,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -532,7 +532,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUpdateInfo 以及其它信息，更新 FileInfo 实体。
@@ -572,7 +572,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -612,7 +612,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 删除文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.deleteFile(filePath, fileName);
 
             // 删除文件信息。
@@ -633,7 +633,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             byte[] content = ftpHandler.retrieveFile(filePath, fileName);
 
             // 更新文件信息。
@@ -660,7 +660,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 下载文件流。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream content = ftpHandler.openInputStream(filePath, fileName);
 
             // 更新文件信息。
@@ -692,7 +692,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUploadInfo 以及其它信息，构造 FileInfo 实体并插入。
@@ -736,7 +736,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -780,7 +780,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.storeFile(filePath, fileName, content);
 
             // 根据 FileManualUpdateInfo 以及其它信息，更新 FileInfo 实体。
@@ -810,7 +810,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 文件内容并存储（覆盖）。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             InputStream cin = info.getContent();
             try (OutputStream fout = ftpHandler.openOutputStream(filePath, fileName)) {
                 IOUtil.trans(cin, fout, Constants.IO_TRANS_BUFFER_SIZE);
@@ -841,7 +841,7 @@ public class FileOperateHandlerImpl implements FileOperateHandler {
 
             // 删除文件。
             String[] filePath = ftpPathResolver.resolvePath(FtpPathResolver.RELATIVE_PATH_FILE);
-            String fileName = ftpPathResolver.resolveFileName(fileInfoKey);
+            String fileName = Long.toString(fileInfoKey.getLongId());
             ftpHandler.deleteFile(filePath, fileName);
 
             // 删除文件信息。

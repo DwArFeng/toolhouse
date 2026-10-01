@@ -4,6 +4,12 @@
 
 ### 功能构建
 
+- FTP 机制优化。
+  - 移除文件名的冗余解析方法，将文件名的解析逻辑内联至调用方。
+  - 优化 FTP 根路径配置项的注释说明，补充正例与反例。
+  - 增加临时文件夹机制，新增 `temp/README.md` 说明文件，并将其纳入 `assembly.xml` 的打包配置。
+  - 在 `.gitignore` 中增加临时文件夹相关文件的忽略规则。
+
 - 增加预设的运维指令。
   - com.dwarfeng.springtelqos.api.integration.system.UptimeCommand。
   - com.dwarfeng.springtelqos.api.integration.system.JmxRemoteCommand。

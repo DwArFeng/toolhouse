@@ -1,6 +1,5 @@
 package com.dwarfeng.toolhouse.impl.handler;
 
-import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
 import org.springframework.beans.factory.annotation.Value;
@@ -67,15 +66,5 @@ public class FtpPathResolver {
         System.arraycopy(rootPath, 0, path, 0, rootPath.length);
         System.arraycopy(relativePath, 0, path, rootPath.length, relativePath.length);
         return path;
-    }
-
-    /**
-     * 解析文件名。
-     *
-     * @param fileKey 文件的键。
-     * @return 解析后的文件名。
-     */
-    public String resolveFileName(@Nonnull LongIdKey fileKey) {
-        return Long.toString(fileKey.getLongId());
     }
 }
