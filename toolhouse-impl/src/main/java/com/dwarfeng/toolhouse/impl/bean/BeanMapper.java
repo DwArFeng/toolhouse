@@ -13,13 +13,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * Hibernate Bean 映射器。
+ * Bean 映射器。
+ *
+ * <p>
+ * 该映射器中包含了 <code>impl</code> 模块中所有实体与 <code>stack</code> 模块中对应实体的映射方法。
  *
  * @author DwArFeng
- * @since beta-1.0.0
+ * @since 1.1.0
  */
 @Mapper
-public interface HibernateMapper {
+public interface BeanMapper {
+
+    // region Subgrade Key
 
     HibernateLongIdKey longIdKeyToHibernate(LongIdKey longIdKey);
 
@@ -30,6 +35,10 @@ public interface HibernateMapper {
 
     @InheritInverseConfiguration
     StringIdKey stringIdKeyFromHibernate(HibernateStringIdKey hibernateStringIdKey);
+
+    // endregion
+
+    // region Toolhouse Key
 
     HibernatePocaKey pocaKeyToHibernate(PocaKey pocaKey);
 
@@ -60,6 +69,10 @@ public interface HibernateMapper {
 
     @InheritInverseConfiguration
     TaskItemKey taskItemKeyFromHibernate(HibernateTaskItemKey hibernateTaskItemKey);
+
+    // endregion
+
+    // region Toolhouse Entity
 
     @Mapping(target = "userStringId", ignore = true)
     @Mapping(target = "user", ignore = true)
@@ -221,4 +234,6 @@ public interface HibernateMapper {
 
     @InheritInverseConfiguration
     FileInfo fileInfoFromHibernate(HibernateFileInfo hibernateFileInfo);
+
+    // endregion
 }

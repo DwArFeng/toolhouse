@@ -9,7 +9,7 @@ import com.dwarfeng.subgrade.sdk.bean.key.HibernateStringIdKey;
 import com.dwarfeng.subgrade.sdk.hibernate.modification.DefaultDeletionMod;
 import com.dwarfeng.subgrade.stack.bean.key.LongIdKey;
 import com.dwarfeng.subgrade.stack.bean.key.StringIdKey;
-import com.dwarfeng.toolhouse.impl.bean.HibernateMapper;
+import com.dwarfeng.toolhouse.impl.bean.BeanMapper;
 import com.dwarfeng.toolhouse.impl.bean.entity.*;
 import com.dwarfeng.toolhouse.impl.bean.key.*;
 import com.dwarfeng.toolhouse.impl.dao.preset.*;
@@ -84,8 +84,8 @@ public class DaoConfiguration {
     public HibernateBatchBaseDao<StringIdKey, HibernateStringIdKey, User, HibernateUser> userHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(User.class, HibernateUser.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(User.class, HibernateUser.class, BeanMapper.class),
                 HibernateUser.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -96,8 +96,8 @@ public class DaoConfiguration {
     public HibernateBatchBaseDao<PocaKey, HibernatePocaKey, Poca, HibernatePoca> pocaHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(PocaKey.class, HibernatePocaKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(PocaKey.class, HibernatePocaKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, BeanMapper.class),
                 HibernatePoca.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -108,7 +108,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Poca, HibernatePoca> pocaHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, BeanMapper.class),
                 HibernatePoca.class
         );
     }
@@ -117,7 +117,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Poca, HibernatePoca> pocaHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Poca.class, HibernatePoca.class, BeanMapper.class),
                 HibernatePoca.class,
                 pocaPresetCriteriaMaker
         );
@@ -128,8 +128,8 @@ public class DaoConfiguration {
     cabinetHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, BeanMapper.class),
                 HibernateCabinet.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -140,7 +140,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Cabinet, HibernateCabinet> cabinetHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, BeanMapper.class),
                 HibernateCabinet.class
         );
     }
@@ -149,7 +149,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Cabinet, HibernateCabinet> cabinetHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Cabinet.class, HibernateCabinet.class, BeanMapper.class),
                 HibernateCabinet.class,
                 cabinetPresetCriteriaMaker
         );
@@ -160,8 +160,8 @@ public class DaoConfiguration {
     folderHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, BeanMapper.class),
                 HibernateFolder.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -172,7 +172,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Folder, HibernateFolder> folderHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, BeanMapper.class),
                 HibernateFolder.class
         );
     }
@@ -181,7 +181,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Folder, HibernateFolder> folderHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Folder.class, HibernateFolder.class, BeanMapper.class),
                 HibernateFolder.class,
                 folderPresetCriteriaMaker
         );
@@ -192,8 +192,8 @@ public class DaoConfiguration {
     toolHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, BeanMapper.class),
                 HibernateTool.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -204,7 +204,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Tool, HibernateTool> toolHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, BeanMapper.class),
                 HibernateTool.class
         );
     }
@@ -213,7 +213,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Tool, HibernateTool> toolHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Tool.class, HibernateTool.class, BeanMapper.class),
                 HibernateTool.class,
                 toolPresetCriteriaMaker
         );
@@ -224,8 +224,8 @@ public class DaoConfiguration {
     favoriteHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(FavoriteKey.class, HibernateFavoriteKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(FavoriteKey.class, HibernateFavoriteKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, BeanMapper.class),
                 HibernateFavorite.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -236,7 +236,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Favorite, HibernateFavorite> favoriteHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, BeanMapper.class),
                 HibernateFavorite.class
         );
     }
@@ -245,7 +245,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Favorite, HibernateFavorite> favoriteHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Favorite.class, HibernateFavorite.class, BeanMapper.class),
                 HibernateFavorite.class,
                 favoritePresetCriteriaMaker
         );
@@ -257,10 +257,10 @@ public class DaoConfiguration {
         return new HibernateBatchBaseDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        VisualizerKey.class, HibernateVisualizerKey.class, HibernateMapper.class
+                        VisualizerKey.class, HibernateVisualizerKey.class, BeanMapper.class
                 ),
                 new MapStructBeanTransformer<>(
-                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, BeanMapper.class
                 ),
                 HibernateVisualizerInfo.class,
                 new DefaultDeletionMod<>(),
@@ -273,7 +273,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, BeanMapper.class
                 ),
                 HibernateVisualizerInfo.class
         );
@@ -284,7 +284,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        VisualizerInfo.class, HibernateVisualizerInfo.class, HibernateMapper.class
+                        VisualizerInfo.class, HibernateVisualizerInfo.class, BeanMapper.class
                 ),
                 HibernateVisualizerInfo.class,
                 visualizerInfoPresetCriteriaMaker
@@ -296,9 +296,9 @@ public class DaoConfiguration {
     visualizerSupportHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
                 new MapStructBeanTransformer<>(
-                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, BeanMapper.class
                 ),
                 HibernateVisualizerSupport.class
         );
@@ -310,7 +310,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, BeanMapper.class
                 ),
                 HibernateVisualizerSupport.class
         );
@@ -322,7 +322,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        VisualizerSupport.class, HibernateVisualizerSupport.class, HibernateMapper.class
+                        VisualizerSupport.class, HibernateVisualizerSupport.class, BeanMapper.class
                 ),
                 HibernateVisualizerSupport.class,
                 visualizerSupportPresetCriteriaMaker
@@ -335,10 +335,10 @@ public class DaoConfiguration {
         return new HibernateBatchBaseDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        ExecutorKey.class, HibernateExecutorKey.class, HibernateMapper.class
+                        ExecutorKey.class, HibernateExecutorKey.class, BeanMapper.class
                 ),
                 new MapStructBeanTransformer<>(
-                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                        ExecutorInfo.class, HibernateExecutorInfo.class, BeanMapper.class
                 ),
                 HibernateExecutorInfo.class,
                 new DefaultDeletionMod<>(),
@@ -351,7 +351,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                        ExecutorInfo.class, HibernateExecutorInfo.class, BeanMapper.class
                 ),
                 HibernateExecutorInfo.class
         );
@@ -362,7 +362,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        ExecutorInfo.class, HibernateExecutorInfo.class, HibernateMapper.class
+                        ExecutorInfo.class, HibernateExecutorInfo.class, BeanMapper.class
                 ),
                 HibernateExecutorInfo.class,
                 executorInfoPresetCriteriaMaker
@@ -374,9 +374,9 @@ public class DaoConfiguration {
     executorSupportHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(StringIdKey.class, HibernateStringIdKey.class, BeanMapper.class),
                 new MapStructBeanTransformer<>(
-                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                        ExecutorSupport.class, HibernateExecutorSupport.class, BeanMapper.class
                 ),
                 HibernateExecutorSupport.class
         );
@@ -388,7 +388,7 @@ public class DaoConfiguration {
         return new HibernateEntireLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                        ExecutorSupport.class, HibernateExecutorSupport.class, BeanMapper.class
                 ),
                 HibernateExecutorSupport.class
         );
@@ -400,7 +400,7 @@ public class DaoConfiguration {
         return new HibernatePresetLookupDao<>(
                 template,
                 new MapStructBeanTransformer<>(
-                        ExecutorSupport.class, HibernateExecutorSupport.class, HibernateMapper.class
+                        ExecutorSupport.class, HibernateExecutorSupport.class, BeanMapper.class
                 ),
                 HibernateExecutorSupport.class,
                 executorSupportPresetCriteriaMaker
@@ -412,8 +412,8 @@ public class DaoConfiguration {
     sessionHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, BeanMapper.class),
                 HibernateSession.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -424,7 +424,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Session, HibernateSession> sessionHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, BeanMapper.class),
                 HibernateSession.class
         );
     }
@@ -433,7 +433,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Session, HibernateSession> sessionHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Session.class, HibernateSession.class, BeanMapper.class),
                 HibernateSession.class,
                 sessionPresetCriteriaMaker
         );
@@ -444,8 +444,8 @@ public class DaoConfiguration {
     variableHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(VariableKey.class, HibernateVariableKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(VariableKey.class, HibernateVariableKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, BeanMapper.class),
                 HibernateVariable.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -456,7 +456,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Variable, HibernateVariable> variableHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, BeanMapper.class),
                 HibernateVariable.class
         );
     }
@@ -465,7 +465,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Variable, HibernateVariable> variableHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Variable.class, HibernateVariable.class, BeanMapper.class),
                 HibernateVariable.class,
                 variablePresetCriteriaMaker
         );
@@ -475,8 +475,8 @@ public class DaoConfiguration {
     public HibernateBatchBaseDao<LongIdKey, HibernateLongIdKey, Task, HibernateTask> taskHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, BeanMapper.class),
                 HibernateTask.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -487,7 +487,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<Task, HibernateTask> taskHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, BeanMapper.class),
                 HibernateTask.class
         );
     }
@@ -496,7 +496,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<Task, HibernateTask> taskHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(Task.class, HibernateTask.class, BeanMapper.class),
                 HibernateTask.class,
                 taskPresetCriteriaMaker
         );
@@ -507,8 +507,8 @@ public class DaoConfiguration {
     inputItemHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(TaskItemKey.class, HibernateTaskItemKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(TaskItemKey.class, HibernateTaskItemKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, BeanMapper.class),
                 HibernateInputItem.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -519,7 +519,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<InputItem, HibernateInputItem> inputItemHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, BeanMapper.class),
                 HibernateInputItem.class
         );
     }
@@ -528,7 +528,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<InputItem, HibernateInputItem> inputItemHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(InputItem.class, HibernateInputItem.class, BeanMapper.class),
                 HibernateInputItem.class,
                 inputItemPresetCriteriaMaker
         );
@@ -539,8 +539,8 @@ public class DaoConfiguration {
     outputItemHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(TaskItemKey.class, HibernateTaskItemKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(TaskItemKey.class, HibernateTaskItemKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, BeanMapper.class),
                 HibernateOutputItem.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -551,7 +551,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<OutputItem, HibernateOutputItem> outputItemHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, BeanMapper.class),
                 HibernateOutputItem.class
         );
     }
@@ -560,7 +560,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<OutputItem, HibernateOutputItem> outputItemHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(OutputItem.class, HibernateOutputItem.class, BeanMapper.class),
                 HibernateOutputItem.class,
                 outputItemPresetCriteriaMaker
         );
@@ -571,8 +571,8 @@ public class DaoConfiguration {
     fileInfoHibernateBatchBaseDao() {
         return new HibernateBatchBaseDao<>(
                 template,
-                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, HibernateMapper.class),
-                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(LongIdKey.class, HibernateLongIdKey.class, BeanMapper.class),
+                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, BeanMapper.class),
                 HibernateFileInfo.class,
                 new DefaultDeletionMod<>(),
                 batchSize
@@ -583,7 +583,7 @@ public class DaoConfiguration {
     public HibernateEntireLookupDao<FileInfo, HibernateFileInfo> fileInfoHibernateEntireLookupDao() {
         return new HibernateEntireLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, BeanMapper.class),
                 HibernateFileInfo.class
         );
     }
@@ -592,7 +592,7 @@ public class DaoConfiguration {
     public HibernatePresetLookupDao<FileInfo, HibernateFileInfo> fileInfoHibernatePresetLookupDao() {
         return new HibernatePresetLookupDao<>(
                 template,
-                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, HibernateMapper.class),
+                new MapStructBeanTransformer<>(FileInfo.class, HibernateFileInfo.class, BeanMapper.class),
                 HibernateFileInfo.class,
                 fileInfoPresetCriteriaMaker
         );
