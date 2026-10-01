@@ -4,6 +4,15 @@
 
 ### 功能构建
 
+- 更新 README.md。
+
+- Wiki 编写。
+  - 构建 wiki 目录结构。
+  - docs/wiki/en_US/Contents.md。
+  - docs/wiki/en_US/Introduction.md。
+  - docs/wiki/zh_CN/Contents.md。
+  - docs/wiki/zh_CN/Introduction.md。
+
 - FTP 机制优化。
   - 移除文件名的冗余解析方法，将文件名的解析逻辑内联至调用方。
   - 优化 FTP 根路径配置项的注释说明，补充正例与反例。
