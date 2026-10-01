@@ -4,6 +4,11 @@
 
 ### 功能构建
 
+- 优化启停脚本注释，以规避潜在的字符集问题。
+  - binres/toolhouse-start.bat。
+  - binres/toolhouse-start.sh。
+  - binres/toolhouse-stop.sh。
+
 - 优化 impl 模块下的 `logging` 目录结构。
   - 将 `logging/settings-windows.xml` 重命名为 `settings-ref-windows.xml`，以消除文件名的歧义。
   - 更新 `logging/README.md` 中的相关说明。
