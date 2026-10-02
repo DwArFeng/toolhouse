@@ -10,7 +10,7 @@
 
     <groupId>com.dwarfeng</groupId>
     <artifactId>toolhouse</artifactId>
-    <version>1.1.0.a-SNAPSHOT</version>
+    <version>1.1.0.a</version>
 
     <packaging>pom</packaging>
 
@@ -510,22 +510,22 @@
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>toolhouse-stack</artifactId>
-                <version>1.1.0.a-SNAPSHOT</version>
+                <version>1.1.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>toolhouse-sdk</artifactId>
-                <version>1.1.0.a-SNAPSHOT</version>
+                <version>1.1.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>toolhouse-impl</artifactId>
-                <version>1.1.0.a-SNAPSHOT</version>
+                <version>1.1.0.a</version>
             </dependency>
             <dependency>
                 <groupId>com.dwarfeng</groupId>
                 <artifactId>toolhouse-node</artifactId>
-                <version>1.1.0.a-SNAPSHOT</version>
+                <version>1.1.0.a</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
